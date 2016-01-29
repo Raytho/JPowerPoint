@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
     MiniatureSlides miniatureSlides = new MiniatureSlides();
-    JPanel mainSlidePanel = new MainSlidePanel();
-    JPanel miniatureSlidesPanel = new MiniatureSlidesPanel();
+    MainSlidePanel mainSlidePanel = new MainSlidePanel();
+    MiniatureSlidesPanel miniatureSlidesPanel = new MiniatureSlidesPanel();
     
     
     public MainFrame() {
@@ -17,6 +17,7 @@ public class MainFrame extends JFrame{
         this.setLayout(new BorderLayout(5, 5));
         this.miniatureSlides = new MiniatureSlides();
         this.mainSlidePanel = new MainSlidePanel();
+        this.miniatureSlidesPanel.displayMiniaturesSlides(miniatureSlides);
         this.mainSlidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         this.miniatureSlidesPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         this.add(this.mainSlidePanel, BorderLayout.CENTER);

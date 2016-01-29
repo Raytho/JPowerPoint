@@ -9,6 +9,11 @@ public class MiniatureSlides implements Observable{
     public MiniatureSlides() {
         this.slides.add(new Slide());
     }
+
+    public ArrayList<Slide> getSlides() {
+        return slides;
+    }
+    
     
     public void addSlide() {
         this.slides.add(new Slide());
