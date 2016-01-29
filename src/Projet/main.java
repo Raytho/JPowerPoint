@@ -1,4 +1,4 @@
-package Vue;
+package Projet;
 
 public class main {
 

@@ -1,4 +1,4 @@
-package Vue;
+package Projet;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
