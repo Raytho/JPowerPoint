@@ -8,9 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Miniatures extends JPanel implements Observer{
     private Application app;
@@ -20,7 +22,8 @@ public class Miniatures extends JPanel implements Observer{
         this.app = app;
         this.setPreferredSize(new Dimension(180,180));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setLayout(new GridLayout(5,5,5,5));
+        //this.setLayout(new GridLayout(5,5,5,5));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
         for(MiniSlide current : this.miniSlides) {
            this.add(current);
