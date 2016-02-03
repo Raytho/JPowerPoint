@@ -14,10 +14,15 @@ public class main {
         
         Miniatures mini = new Miniatures(app);
         app.addObserver(mini);
-        
+        Toolbar tb = new Toolbar();
+        Menu menu = new Menu();
         
         JFrame frame = new JFrame("PowerPoint");
         frame.setLayout(new BorderLayout(5,5));
+        
+        frame.setJMenuBar(menu);
+        frame.add(tb, BorderLayout.NORTH);
+        
         
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout(5,5));

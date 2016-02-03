@@ -1,7 +1,11 @@
 package Projet;
 
+import java.awt.Component;
+import java.util.ArrayList;
+
 public class Slide implements Comparable{
     private int id;
+    private ArrayList<Component> items; //Différents trucs biduls dans le slide
     
     public Slide(int id) {
         this.id = id;
