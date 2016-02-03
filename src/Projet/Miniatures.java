@@ -17,12 +17,13 @@ import javax.swing.JScrollPane;
 public class Miniatures extends JPanel implements Observer{
     private Application app;
     private ArrayList<MiniSlide> miniSlides = new ArrayList<MiniSlide>();
+    private JScrollPane scroll;
+    private int nbSlide = 1;
     
     public Miniatures(Application app) {
         this.app = app;
-        this.setPreferredSize(new Dimension(180,180));
+        this.setPreferredSize(new Dimension(180,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        //this.setLayout(new GridLayout(5,5,5,5));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
         for(MiniSlide current : this.miniSlides) {
@@ -53,12 +54,11 @@ public class Miniatures extends JPanel implements Observer{
         this.miniSlides.removeAll(miniSlides);    
         this.MiniSlidesInit();
         
-        for(Component current : this.getComponents()) {
-            this.remove(current);
-        }
+        this.removeAll();
         for(MiniSlide current : this.miniSlides) {
            this.add(current);
         }
+        this.invalidate();
         JButton add = new JButton("Add");
         ActionListener buttonListener = new ActionListener() {
             @Override
@@ -66,10 +66,18 @@ public class Miniatures extends JPanel implements Observer{
                 app.addSlide();
             }
         };
+        nbSlide = this.miniSlides.size();
         add.addActionListener(buttonListener);
         this.add(add);
         System.out.println(app);
+        this.setPreferredSize(new Dimension(180,180*nbSlide));
         this.repaint();
         this.revalidate();
     }
+
+    public int getNbSlide() {
+        return nbSlide;
+    }
+    
+    
 }
