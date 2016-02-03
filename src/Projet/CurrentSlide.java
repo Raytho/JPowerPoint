@@ -9,7 +9,7 @@ public class CurrentSlide extends JPanel{
     
     public CurrentSlide(Slide slide) {
         this.slide = slide;
-        this.setPreferredSize(new Dimension(300,300));
+        this.setPreferredSize(new Dimension(1000,700));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         
     }
