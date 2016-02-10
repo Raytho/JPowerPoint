@@ -10,9 +10,9 @@ public class CurrentSlide extends JPanel implements Observer{
     
     public CurrentSlide(Slide slide) {
         this.slide = slide;
-        this.setPreferredSize(new Dimension(1000,630));
+        this.setPreferredSize(new Dimension(970,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        
+        this.setBackground(Color.white);
     }
 
     @Override

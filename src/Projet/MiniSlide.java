@@ -13,5 +13,6 @@ public class MiniSlide extends JPanel{
         this.setMinimumSize(this.getPreferredSize());
         this.setMaximumSize(this.getPreferredSize());
         this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBackground(Color.white);
     }
 }
