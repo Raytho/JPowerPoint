@@ -33,6 +33,7 @@ public class main{
         frame.add(leftPanel, BorderLayout.WEST);
         
         CurrentSlide currentSlide = new CurrentSlide(app.getSlides().get(0));
+        app.addObserver(currentSlide);
         JPanel rightPanel = new JPanel();
         rightPanel.add(currentSlide);
         rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));

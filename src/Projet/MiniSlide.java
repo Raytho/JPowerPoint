@@ -1,5 +1,6 @@
 package Projet;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,6 +14,9 @@ public class MiniSlide extends JPanel implements MouseListener{
     public MiniSlide(Slide slide, Application app) {
         this.slide = slide;
         this.app = app;
+        for(Component current : this.slide.getItems()) {
+            this.add(current);
+        }
         this.setPreferredSize(new Dimension(194,120));
         this.setMinimumSize(this.getPreferredSize());
         this.setMaximumSize(this.getPreferredSize());
