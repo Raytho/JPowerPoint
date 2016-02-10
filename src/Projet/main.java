@@ -39,7 +39,7 @@ public class main{
         frame.add(rightPanel, BorderLayout.CENTER);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1400, 740);
+        frame.setSize(1200, 700);
         frame.setVisible(true);
     }
     
