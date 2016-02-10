@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 public class Miniatures extends JPanel implements Observer{
     private Application app;
     private ArrayList<MiniSlide> miniSlides = new ArrayList<MiniSlide>();
-    private JScrollPane scroll;
     private int nbSlide = 1;
     
     public Miniatures(Application app) {
