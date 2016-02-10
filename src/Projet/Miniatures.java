@@ -27,6 +27,7 @@ public class Miniatures extends JPanel implements Observer{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
         for(MiniSlide current : this.miniSlides) {
+           this.add(Box.createRigidArea(new Dimension(5,5)));
            this.add(current);
         }
         JButton add = new JButton("Add");
@@ -56,8 +57,8 @@ public class Miniatures extends JPanel implements Observer{
         
         this.removeAll();
         for(MiniSlide current : this.miniSlides) {
+            this.add(Box.createRigidArea(new Dimension(5,5)));
            this.add(current);
-           this.add(Box.createRigidArea(new Dimension(5,10)));
         }
         this.invalidate();
         JButton add = new JButton("Add");
