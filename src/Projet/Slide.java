@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Slide implements Comparable{
     private int id;
     private ArrayList<Component> items; //Différents trucs biduls dans le slide
+    private boolean isHighlighted = false;
     
     public Slide(int id) {
         this.id = id;
@@ -19,7 +20,13 @@ public class Slide implements Comparable{
         this.id = id;
     }
     
+    public void setHighlight(boolean isHighlighted) {
+        this.isHighlighted = isHighlighted;
+    }
     
+    public boolean getHighlight(){
+        return this.isHighlighted;
+    }
     @Override
     public int compareTo(Object t) {
         Slide other = (Slide)t;

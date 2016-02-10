@@ -22,12 +22,14 @@ public class Miniatures extends JPanel implements Observer{
     
     public Miniatures(Application app) {
         this.app = app;
-        this.setPreferredSize(new Dimension(200,600));
+        this.setPreferredSize(new Dimension(220,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
         for(MiniSlide current : this.miniSlides) {
            this.add(Box.createRigidArea(new Dimension(5,5)));
+           current.getSlide().setHighlight(true);
+           current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
            this.add(current);
         }
         JButton add = new JButton("Add");
@@ -44,7 +46,7 @@ public class Miniatures extends JPanel implements Observer{
     
     private void MiniSlidesInit() {
        for(Slide current : app.getSlides()) {
-           this.miniSlides.add(new MiniSlide(current));
+           this.miniSlides.add(new MiniSlide(current, app));
        }     
     }
     
@@ -53,11 +55,10 @@ public class Miniatures extends JPanel implements Observer{
     public void update(Application app) {
         this.app = app;
         this.miniSlides.removeAll(miniSlides);    
-        this.MiniSlidesInit();
-        
+        this.MiniSlidesInit();     
         this.removeAll();
         for(MiniSlide current : this.miniSlides) {
-            this.add(Box.createRigidArea(new Dimension(5,5)));
+           this.add(Box.createRigidArea(new Dimension(5,5)));
            this.add(current);
         }
         this.invalidate();
@@ -73,6 +74,15 @@ public class Miniatures extends JPanel implements Observer{
         this.add(add);
         System.out.println(app);
         this.setPreferredSize(new Dimension(180,180*nbSlide));
+        for(MiniSlide current : this.miniSlides){
+            if(current.getSlide().getHighlight() == true){
+                current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+            }
+            else
+            {
+                current.setBorder(BorderFactory.createLineBorder(Color.black));
+            }
+        }
         this.repaint();
         this.revalidate();
     }
