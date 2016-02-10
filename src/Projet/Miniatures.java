@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +22,7 @@ public class Miniatures extends JPanel implements Observer{
     
     public Miniatures(Application app) {
         this.app = app;
-        this.setPreferredSize(new Dimension(180,600));
+        this.setPreferredSize(new Dimension(200,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
