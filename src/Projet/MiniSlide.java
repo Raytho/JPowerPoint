@@ -35,6 +35,7 @@ public class MiniSlide extends JPanel implements MouseListener{
             current.setHighlight(false);
         }
         this.slide.setHighlight(true);
+        this.app.getCurrentSlide().setSlide(slide);
         this.app.notifyObserver();
     }
 
