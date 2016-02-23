@@ -11,26 +11,34 @@ import javax.swing.JPanel;
 
 public class CurrentSlide extends JPanel implements Observer{
     private Slide slide;
-    private Application app;
+    //private Application app;
     
     public CurrentSlide(Slide slide) {
         this.slide = slide;
         this.setPreferredSize(new Dimension(950,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBackground(Color.white);
+        for(Component current : this.slide.getItemsCopy()) { 
+            this.add(current);
+        }
+        this.validate();
+        this.repaint();
         //app.notifyObserver();      
     }
+
+    public void setSlide(Slide slide) {
+        this.slide = slide;
+    }
+    
+    
 
     @Override
     public void update(Application app) {
         this.removeAll();
-        for(Component current : this.slide.getItems()) { 
-            JLabel jl = new JLabel();
-            if (current instanceof JLabel){               
-                
-            }
-            this.add(jl);
+        for(Component current : this.slide.getItemsCopy()) { 
+            this.add(current);
         }
+        this.validate();
         this.repaint();
     }
 }

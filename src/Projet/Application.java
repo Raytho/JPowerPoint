@@ -6,6 +6,7 @@ public class Application implements Observable{
     private ArrayList<Slide> slides = new ArrayList<Slide>();
     private int slideNumber = 1;
     private ArrayList<Observer> listObserver = new ArrayList<Observer>();
+    private CurrentSlide currentSlide;
     
     public Application() {
         this.slides.add(new Slide(0));  //par défaut on a un slide
@@ -46,6 +47,16 @@ public class Application implements Observable{
     public int getSlideNumber() {
         return slideNumber;
     }
+
+    public CurrentSlide getCurrentSlide() {
+        return currentSlide;
+    }
+    
+
+    public void setCurrentSlide(CurrentSlide currentSlide) {
+        this.currentSlide = currentSlide;
+    }
+    
 
     @Override
     public void addObserver(Observer obs) {

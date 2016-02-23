@@ -83,8 +83,8 @@ public class Miniatures extends JPanel implements Observer{
                 current.setBorder(BorderFactory.createLineBorder(Color.black));
             }
         }
-        this.repaint();
         this.revalidate();
+        this.repaint();
     }
 
     public int getNbSlide() {
