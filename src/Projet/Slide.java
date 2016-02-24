@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class Slide implements Comparable{
     private int id;
-    private ArrayList<Component> items = new ArrayList<Component>(); //Différents trucs biduls dans le slide
+    private ArrayList<Component> items = new ArrayList<Component>(); //Différents trucs bidules dans le slide
     private ArrayList<Component> itemsCopy = new ArrayList<Component>();
     private boolean isHighlighted = false;
     

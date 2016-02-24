@@ -16,12 +16,14 @@ public class CurrentSlide extends JPanel implements Observer{
     public CurrentSlide(Slide slide) {
         this.slide = slide;
         this.setPreferredSize(new Dimension(950,600));
+        this.setLayout(null);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBackground(Color.white);
+        this.addMouseListener(new SlideListener());
         for(Component current : this.slide.getItemsCopy()) { 
             this.add(current);
         }
-        this.validate();
+        this.revalidate();
         this.repaint();
         //app.notifyObserver();      
     }
@@ -29,8 +31,11 @@ public class CurrentSlide extends JPanel implements Observer{
     public void setSlide(Slide slide) {
         this.slide = slide;
     }
-    
-    
+
+    public Slide getSlide() {
+        return slide;
+    }
+
 
     @Override
     public void update(Application app) {
