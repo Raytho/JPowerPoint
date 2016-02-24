@@ -13,6 +13,7 @@ public class MiniSlide extends JPanel implements MouseListener{
     
     public MiniSlide(Slide slide, Application app) {
         this.slide = slide;
+        this.setLayout(null);
         this.app = app;
         for(Component current : this.slide.getItems()) {
             this.add(current);

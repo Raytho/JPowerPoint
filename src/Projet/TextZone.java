@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 /***************
- * @author ISEN
+ * @author ISEN THOMAS
  */
 
 

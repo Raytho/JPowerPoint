@@ -23,7 +23,7 @@ public class CurrentSlide extends JPanel implements Observer{
         for(Component current : this.slide.getItemsCopy()) { 
             this.add(current);
         }
-        this.revalidate();
+        this.validate();
         this.repaint();
         //app.notifyObserver();      
     }

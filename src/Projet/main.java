@@ -29,6 +29,7 @@ public class main{
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout(5,5));
         JScrollPane scroll = new JScrollPane(mini);
+        scroll.setPreferredSize(new Dimension(230,500));
         leftPanel.add(scroll, BorderLayout.NORTH);
         frame.add(leftPanel, BorderLayout.WEST);
         

@@ -1,6 +1,8 @@
 package Projet;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
@@ -14,9 +16,18 @@ public class Slide implements Comparable{
         double nb = Math.random();
         String nbS = String.valueOf(nb);
         JLabel nComp = new JLabel(nbS); //TODO : class (Cloneable) JLabel 
+        nComp.setSize(new Dimension(70,10));
+        Font newLabelFont=new Font(nComp.getFont().getName(),nComp.getFont().getStyle(),5);
+        nComp.setFont(newLabelFont);
         JLabel nCompCopy = new JLabel(nbS);
+        nCompCopy.setSize(new Dimension(150,20));
         this.items.add(nComp);
         this.itemsCopy.add(nCompCopy);
+    }
+    
+    public void addComponent(Component comp) {
+        this.items.add(comp);
+        this.itemsCopy.add(comp);
     }
     
     public Slide(int id) {
