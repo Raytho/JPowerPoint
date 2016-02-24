@@ -56,7 +56,9 @@ public class TextZone extends JTextArea{
         dragBotLeft.addMouseMotionListener(dl);
         dragBotLeft.addMouseListener(dl);
        
-        this.addMouseListener(new JTextAreaListener());
+        JTextAreaListener jtal = new JTextAreaListener();
+        this.addMouseListener(jtal);
+        this.addMouseMotionListener(jtal);
     }
     
 }
