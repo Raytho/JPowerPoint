@@ -15,7 +15,7 @@ import java.awt.event.MouseMotionListener;
  * @author ISEN
  */
 public class JTextAreaListener implements MouseListener, MouseMotionListener{
-
+    int x, y, xtr, ytr, xtl, ytl, xbr, ybr, xbl, ybl, xmouse, ymouse; 
     
     @Override
     public void mouseClicked(MouseEvent me) {
@@ -25,6 +25,19 @@ public class JTextAreaListener implements MouseListener, MouseMotionListener{
 
     @Override
     public void mousePressed(MouseEvent me) {
+        TextZone tz = (TextZone)me.getSource();
+        x = tz.getX();
+        y = tz.getY();
+        xmouse = me.getXOnScreen();
+        ymouse = me.getYOnScreen();
+        xtr = tz.dragTopRight.getX();
+        ytr = tz.dragTopRight.getY();
+        xtl = tz.dragTopLeft.getX();
+        ytl = tz.dragTopLeft.getY(); 
+        xbr = tz.dragBotRight.getX();
+        ybr = tz.dragBotRight.getY();
+        xbl = tz.dragBotLeft.getX();
+        ybl = tz.dragBotLeft.getY();  
     }
 
     @Override
@@ -43,7 +56,17 @@ public class JTextAreaListener implements MouseListener, MouseMotionListener{
     
     @Override
     public void mouseDragged(MouseEvent me) {
-       
+       TextZone tz = (TextZone)me.getSource();
+       if(tz.getCursor().getType() == Cursor.MOVE_CURSOR){
+           int movex = me.getXOnScreen() - xmouse;
+           int movey = me.getYOnScreen() - ymouse;
+           System.out.println("(" + movex + " , " + movey + ")");
+           tz.setLocation(x+movex, y+movey);
+           tz.dragTopLeft.setLocation(xtl+movex, ytl+movey);
+           tz.dragTopRight.setLocation(xtr+movex, ytr+movey);
+           tz.dragBotLeft.setLocation(xbl+movex, ybl+movey);
+           tz.dragBotRight.setLocation(xbr+movex, ybr+movey);
+       }
     }
 
     @Override
