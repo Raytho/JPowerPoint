@@ -17,12 +17,12 @@ public class SlideListener extends MouseInputAdapter {
     @Override
     public void mousePressed(MouseEvent me) {
         CurrentSlide currentSlide = (CurrentSlide)me.getSource();
-        //Slide slide = currentSlide.getSlide();
         
         
         TextZone tz = new TextZone("", 5, 20, me.getX(), me.getY());
         tz.setBorder(BorderFactory.createTitledBorder(""));
-        
+        currentSlide.getSlide().addComponent(tz);
+                
         currentSlide.add(tz);
         currentSlide.add(tz.dragTopLeft);
         currentSlide.add(tz.dragTopRight);
@@ -33,7 +33,7 @@ public class SlideListener extends MouseInputAdapter {
         currentSlide.setComponentZOrder(tz.dragTopRight, 0);
         currentSlide.setComponentZOrder(tz.dragBotLeft, 0);
         currentSlide.setComponentZOrder(tz.dragBotRight, 0);
-        currentSlide.revalidate();
+        currentSlide.validate();
         currentSlide.repaint();
     }
     
