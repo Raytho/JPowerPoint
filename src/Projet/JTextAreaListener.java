@@ -49,10 +49,10 @@ public class JTextAreaListener implements MouseListener, MouseMotionListener{
     @Override
     public void mouseMoved(MouseEvent me) {
         TextZone tz = (TextZone)me.getSource();
-       if((me.getX() < 3) || (me.getX() > tz.getWidth()-3) || (me.getY() < 3) || (me.getY() > tz.getHeight()-3)){
-            tz.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+        if((me.getX() < 3) || (me.getX() > tz.getWidth()-3) || (me.getY() < 3) || (me.getY() > tz.getHeight()-3)){
+             tz.setCursor(new Cursor(Cursor.MOVE_CURSOR));
         }else{
-            tz.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+             tz.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
     
