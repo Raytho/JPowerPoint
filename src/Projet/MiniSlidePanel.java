@@ -32,12 +32,18 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        for(Slide current : this.app.getSlides()){
-            current.setHighlight(false);
+        if(me.getButton() == MouseEvent.BUTTON1){
+            for(Slide current : this.app.getSlides()){
+                current.setHighlight(false);
+            }
+            this.slide.setHighlight(true);
+            this.app.getCurrentSlide().setSlide(slide);
+            this.app.notifyObserver();
+        }else if(me.getButton() == MouseEvent.BUTTON3){
+            PopUpMiniatures menu = new PopUpMiniatures();
+            menu.show(this, me.getX(), me.getY());
+            System.out.println("ézeorg");
         }
-        this.slide.setHighlight(true);
-        this.app.getCurrentSlide().setSlide(slide);
-        this.app.notifyObserver();
     }
 
     @Override
