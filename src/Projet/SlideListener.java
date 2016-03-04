@@ -18,12 +18,12 @@ public class SlideListener extends MouseInputAdapter {
     @Override
     public void mousePressed(MouseEvent me) {   
         if(me.getButton() == BUTTON1){
-            CurrentSlide currentSlide = (CurrentSlide)me.getSource();
+            CurrentSlideView currentSlide = (CurrentSlideView)me.getSource();
 
 
-            TextZone tz = new TextZone("", 5, 20, me.getX(), me.getY());
+            TextZone tz = new TextZone("", 5, 20, me.getX(), me.getY(), currentSlide);
             tz.setBorder(BorderFactory.createTitledBorder(""));
-            currentSlide.getSlide().addComponent(tz);
+            currentSlide.getSlide().addCurrentSlideComponent(tz);
 
             currentSlide.add(tz);
             currentSlide.add(tz.dragTopLeft);
