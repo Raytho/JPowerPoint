@@ -1,27 +1,37 @@
 package Projet;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
-/***************
- * @author ISEN THOMAS
- */
-
-
-
-
-public class TextZone extends JTextArea{
+public class Resizable extends JPanel{
     JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
-    
-    public TextZone(String string, int i, int i1, int x, int y, CurrentSlideView currentSlide) {
-        super(string, i, i1);
-        this.addKeyListener(new EnterTextListener(currentSlide));
-        Dimension size = this.getPreferredSize();
-        this.setBounds(x,y, size.width, size.height); 
+    CurrentSlideView currentSlideView;
+    JTextPane textZone;
+    Image image;
+    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image){
+        Dimension size = new Dimension(200,100);
+        this.setBounds(x,y, size.width, size.height);
+        this.setBackground(Color.white);
+        this.currentSlideView = currentSlide;
+        this.setLayout(null);
+        
+        if(image==null){
+            textZone = new JTextPane();
+            this.add(textZone);
+            textZone.setBounds(1,1, size.width-2, size.height-2);
+            this.image = null;
+        }else{
+            this.textZone = null;
+            this.image = image;
+            
+        }
 
         dragTopLeft = new JButton();
         dragTopLeft.setBounds(x, y, 9, 9); 
@@ -56,8 +66,8 @@ public class TextZone extends JTextArea{
         dragTopRight.addMouseListener(dl);
         dragBotLeft.addMouseMotionListener(dl);
         dragBotLeft.addMouseListener(dl);
-       
-        JTextAreaListener jtal = new JTextAreaListener();
+        
+        ResizableListener jtal = new ResizableListener();
         this.addMouseListener(jtal);
         this.addMouseMotionListener(jtal);
     }

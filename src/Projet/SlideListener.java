@@ -26,11 +26,11 @@ public class SlideListener extends MouseInputAdapter {
             
             for(int i=0;i<=currentSlide.getSlide().getItemsCurrentSlide().size()-1;i++) {
                 Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
-                if(current instanceof TextZone) {
-                    TextZone zone = (TextZone)current;
-                    JLabel label = new JLabel(zone.getText());
-                    label.setSize(zone.getSize());
-                    label.setLocation(zone.getX(), zone.getY());
+                if(current instanceof Resizable) {
+                    Resizable zr = (Resizable)current;
+                    JLabel label = new JLabel(zr.textZone.getText());
+                    label.setSize(zr.getSize());
+                    label.setLocation(zr.getX(), zr.getY());
                     currentSlide.getSlide().getItemsCurrentSlide().add(label);
                     
                     currentSlide.getSlide().getItemsCurrentSlide().remove(i);
@@ -41,20 +41,20 @@ public class SlideListener extends MouseInputAdapter {
             }
 
 
-            TextZone tz = new TextZone("", 5, 20, me.getX(), me.getY(), currentSlide);
-            tz.setBorder(BorderFactory.createTitledBorder(""));
-            currentSlide.getSlide().addCurrentSlideComponent(tz);
+            Resizable zr = new Resizable(5, 20, me.getX(), me.getY(), currentSlide, null);
+            zr.setBorder(BorderFactory.createTitledBorder(""));
+            currentSlide.getSlide().addCurrentSlideComponent(zr);
 
-            currentSlide.add(tz);
-            currentSlide.add(tz.dragTopLeft);
-            currentSlide.add(tz.dragTopRight);
-            currentSlide.add(tz.dragBotLeft);
-            currentSlide.add(tz.dragBotRight);
-            currentSlide.setComponentZOrder(tz, 1);
-            currentSlide.setComponentZOrder(tz.dragTopLeft, 0);
-            currentSlide.setComponentZOrder(tz.dragTopRight, 0);
-            currentSlide.setComponentZOrder(tz.dragBotLeft, 0);
-            currentSlide.setComponentZOrder(tz.dragBotRight, 0);
+            currentSlide.add(zr);
+            currentSlide.add(zr.dragTopLeft);
+            currentSlide.add(zr.dragTopRight);
+            currentSlide.add(zr.dragBotLeft);
+            currentSlide.add(zr.dragBotRight);
+            currentSlide.setComponentZOrder(zr, 1);
+            currentSlide.setComponentZOrder(zr.dragTopLeft, 0);
+            currentSlide.setComponentZOrder(zr.dragTopRight, 0);
+            currentSlide.setComponentZOrder(zr.dragBotLeft, 0);
+            currentSlide.setComponentZOrder(zr.dragBotRight, 0);
             currentSlide.validate();
             currentSlide.repaint();
         }
