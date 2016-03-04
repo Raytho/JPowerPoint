@@ -55,7 +55,6 @@ public class JTextAreaListener implements MouseListener, MouseMotionListener{
        if(tz.getCursor().getType() == Cursor.MOVE_CURSOR){
            int movex = me.getXOnScreen() - xmouse;
            int movey = me.getYOnScreen() - ymouse;
-           System.out.println("(" + movex + " , " + movey + ")");
            tz.setLocation(x+movex, y+movey);
            tz.dragTopLeft.setLocation(xtl+movex, ytl+movey);
            tz.dragTopRight.setLocation(xtr+movex, ytr+movey);
