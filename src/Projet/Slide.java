@@ -78,6 +78,5 @@ public class Slide implements Comparable{
         else {
             return 0;
         }
-    }
-    
+    }    
 }

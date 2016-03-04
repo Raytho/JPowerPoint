@@ -12,13 +12,33 @@ import javax.swing.event.MouseInputAdapter;
 
 
 public class SlideListener extends MouseInputAdapter {
-    public SlideListener() {
+    private Application app;
+    
+    public SlideListener(Application app) {
+        this.app = app;
     }
     
     @Override
     public void mousePressed(MouseEvent me) {   
         if(me.getButton() == BUTTON1){
             CurrentSlideView currentSlide = (CurrentSlideView)me.getSource();
+            
+            
+            for(int i=0;i<=currentSlide.getSlide().getItemsCurrentSlide().size()-1;i++) {
+                Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
+                if(current instanceof TextZone) {
+                    TextZone zone = (TextZone)current;
+                    JLabel label = new JLabel(zone.getText());
+                    label.setSize(zone.getSize());
+                    label.setLocation(zone.getX(), zone.getY());
+                    currentSlide.getSlide().getItemsCurrentSlide().add(label);
+                    
+                    currentSlide.getSlide().getItemsCurrentSlide().remove(i);
+                    this.app.notifyObserver();
+                    //i--;
+                    break;
+                }
+            }
 
 
             TextZone tz = new TextZone("", 5, 20, me.getX(), me.getY(), currentSlide);

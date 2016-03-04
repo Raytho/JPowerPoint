@@ -32,7 +32,7 @@ public class JTextAreaListener implements MouseListener, MouseMotionListener{
         xbr = tz.dragBotRight.getX();
         ybr = tz.dragBotRight.getY();
         xbl = tz.dragBotLeft.getX();
-        ybl = tz.dragBotLeft.getY();  
+        ybl = tz.dragBotLeft.getY(); 
     }
 
     @Override
