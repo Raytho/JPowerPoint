@@ -9,23 +9,23 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CurrentSlide extends JPanel implements Observer{
+public class CurrentSlideView extends JPanel implements Observer{
     private Slide slide;
-    //private Application app;
+    private Application app;
     
-    public CurrentSlide(Slide slide) {
+    public CurrentSlideView(Slide slide, Application app) {
         this.slide = slide;
+        this.app = app;
         this.setPreferredSize(new Dimension(950,600));
         this.setLayout(null);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBackground(Color.white);
         this.addMouseListener(new SlideListener());
-        for(Component current : this.slide.getItemsCopy()) { 
+        for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }
         this.validate();
-        this.repaint();
-        //app.notifyObserver();      
+        this.repaint();     
     }
 
     public void setSlide(Slide slide) {
@@ -36,11 +36,15 @@ public class CurrentSlide extends JPanel implements Observer{
         return slide;
     }
 
+    public Application getApp() {
+        return app;
+    }
+
 
     @Override
     public void update(Application app) {
         this.removeAll();
-        for(Component current : this.slide.getItemsCopy()) { 
+        for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }
         this.validate();

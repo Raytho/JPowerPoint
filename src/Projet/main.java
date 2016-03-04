@@ -13,7 +13,7 @@ public class main{
     public static void main(String[] args) {
         Application app = new Application();
         
-        Miniatures mini = new Miniatures(app);
+        MiniaturesView mini = new MiniaturesView(app);
         app.addObserver(mini);
         Toolbar tb = new Toolbar();
         Menu menu = new Menu();
@@ -33,7 +33,7 @@ public class main{
         leftPanel.add(scroll, BorderLayout.NORTH);
         frame.add(leftPanel, BorderLayout.WEST);
         
-        CurrentSlide currentSlide = new CurrentSlide(app.getSlides().get(0));
+        CurrentSlideView currentSlide = new CurrentSlideView(app.getSlides().get(0), app);
         app.setCurrentSlide(currentSlide);
         app.addObserver(currentSlide);
         JPanel rightPanel = new JPanel();

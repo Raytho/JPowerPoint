@@ -15,18 +15,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class Miniatures extends JPanel implements Observer{
+public class MiniaturesView extends JPanel implements Observer{
     private Application app;
-    private ArrayList<MiniSlide> miniSlides = new ArrayList<MiniSlide>();
+    private ArrayList<MiniSlidePanel> miniSlides = new ArrayList<MiniSlidePanel>();
     private int nbSlide = 1;
     
-    public Miniatures(Application app) {
+    public MiniaturesView(Application app) {
         this.app = app;
         this.setPreferredSize(new Dimension(220,600));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();
-        for(MiniSlide current : this.miniSlides) {
+        for(MiniSlidePanel current : this.miniSlides) {
            this.add(Box.createRigidArea(new Dimension(5,5)));
            current.getSlide().setHighlight(true);
            current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
@@ -46,7 +46,7 @@ public class Miniatures extends JPanel implements Observer{
     
     private void MiniSlidesInit() {
        for(Slide current : app.getSlides()) {
-           this.miniSlides.add(new MiniSlide(current, app));
+           this.miniSlides.add(new MiniSlidePanel(current, app));
        }     
     }
     
@@ -57,7 +57,7 @@ public class Miniatures extends JPanel implements Observer{
         this.miniSlides.removeAll(miniSlides);    
         this.MiniSlidesInit();     
         this.removeAll();
-        for(MiniSlide current : this.miniSlides) {
+        for(MiniSlidePanel current : this.miniSlides) {
            this.add(Box.createRigidArea(new Dimension(5,5)));
            this.add(current);
         }
@@ -74,7 +74,7 @@ public class Miniatures extends JPanel implements Observer{
         this.add(add);
         System.out.println(app);
         this.setPreferredSize(new Dimension(180,180*nbSlide));
-        for(MiniSlide current : this.miniSlides){
+        for(MiniSlidePanel current : this.miniSlides){
             if(current.getSlide().getHighlight() == true){
                 current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             }

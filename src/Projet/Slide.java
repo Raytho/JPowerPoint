@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 
 public class Slide implements Comparable{
     private int id;
-    private ArrayList<Component> items = new ArrayList<Component>(); //Différents trucs bidules dans le slide
-    private ArrayList<Component> itemsCopy = new ArrayList<Component>();
+    private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); //Différents trucs bidules dans le slide
+    private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
     private boolean isHighlighted = false;
     
     public void addComponent(){
@@ -21,13 +21,17 @@ public class Slide implements Comparable{
         nComp.setFont(newLabelFont);
         JLabel nCompCopy = new JLabel(nbS);
         nCompCopy.setSize(new Dimension(150,20));
-        this.items.add(nComp);
-        this.itemsCopy.add(nCompCopy);
+        this.itemsMiniSlide.add(nComp);
+        this.itemsCurrentSlide.add(nCompCopy);
     }
     
     public void addComponent(Component comp) {
-        this.items.add(comp);
-        this.itemsCopy.add(comp);
+        this.itemsMiniSlide.add(comp);
+        this.itemsCurrentSlide.add(comp);
+    }
+    
+    public void addCurrentSlideComponent (Component comp) {
+        this.itemsCurrentSlide.add(comp);
     }
     
     public Slide(int id) {
@@ -35,12 +39,12 @@ public class Slide implements Comparable{
         addComponent();
     }
 
-    public ArrayList<Component> getItems() {
-        return items;
+    public ArrayList<Component> getItemsMiniSlide() {
+        return itemsMiniSlide;
     }
     
-    public ArrayList<Component> getItemsCopy() {
-        return itemsCopy;
+    public ArrayList<Component> getItemsCurrentSlide() {
+        return itemsCurrentSlide;
     }
     
     

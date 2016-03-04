@@ -17,8 +17,9 @@ import javax.swing.JTextArea;
 public class TextZone extends JTextArea{
     JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
     
-    public TextZone(String string, int i, int i1, int x, int y) {
+    public TextZone(String string, int i, int i1, int x, int y, CurrentSlideView currentSlide) {
         super(string, i, i1);
+        this.addKeyListener(new EnterTextListener(currentSlide));
         Dimension size = this.getPreferredSize();
         this.setBounds(x,y, size.width, size.height); 
 

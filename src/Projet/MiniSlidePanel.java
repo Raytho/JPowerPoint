@@ -7,15 +7,15 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class MiniSlide extends JPanel implements MouseListener{
+public class MiniSlidePanel extends JPanel implements MouseListener{
     private Slide slide;
     private Application app;
     
-    public MiniSlide(Slide slide, Application app) {
+    public MiniSlidePanel(Slide slide, Application app) {
         this.slide = slide;
         this.setLayout(null);
         this.app = app;
-        for(Component current : this.slide.getItems()) {
+        for(Component current : this.slide.getItemsMiniSlide()) {
             this.add(current);
         }
         this.setPreferredSize(new Dimension(194,120));
