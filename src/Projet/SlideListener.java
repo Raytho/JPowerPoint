@@ -32,11 +32,15 @@ public class SlideListener extends MouseInputAdapter {
                     label.setSize(zr.getSize());
                     label.setLocation(zr.getX(), zr.getY());
                     currentSlide.getSlide().getItemsCurrentSlide().add(label);
+                    JLabel label2 = new JLabel(zr.textZone.getText());
+                    label2.setSize(new Dimension(10,10));
+                    label2.setLocation(zr.getX()-700, zr.getY()-200);
+                    //System.out.println(zr.getX());
+                    currentSlide.getSlide().getItemsMiniSlide().add(label2);
                     
                     currentSlide.getSlide().getItemsCurrentSlide().remove(i);
                     this.app.notifyObserver();
-                    //i--;
-                    break;
+                    return;
                 }
             }
 
