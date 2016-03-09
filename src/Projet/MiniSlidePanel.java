@@ -40,7 +40,7 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
             this.app.getCurrentSlide().setSlide(slide);
             this.app.notifyObserver();
         }else if(me.getButton() == MouseEvent.BUTTON3){
-            PopUpMiniatures menu = new PopUpMiniatures();
+            PopUpMiniatures menu = new PopUpMiniatures(this.app, this.slide);
             menu.show(this, me.getX(), me.getY());
         }
     }

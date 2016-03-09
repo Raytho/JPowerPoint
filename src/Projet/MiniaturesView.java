@@ -69,7 +69,7 @@ public class MiniaturesView extends JPanel implements Observer{
                 app.addSlide();
             }
         };
-        nbSlide = this.miniSlides.size();
+        this.nbSlide = this.miniSlides.size();
         add.addActionListener(buttonListener);
         this.add(add);
         System.out.println(app);
@@ -78,8 +78,7 @@ public class MiniaturesView extends JPanel implements Observer{
             if(current.getSlide().getHighlight() == true){
                 current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             }
-            else
-            {
+            else {
                 current.setBorder(BorderFactory.createLineBorder(Color.black));
             }
         }
