@@ -22,7 +22,7 @@ public class MiniaturesView extends JPanel implements Observer{
     
     public MiniaturesView(Application app) {
         this.app = app;
-        this.setPreferredSize(new Dimension(220,600));
+        this.setPreferredSize(new Dimension(220,300));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.MiniSlidesInit();

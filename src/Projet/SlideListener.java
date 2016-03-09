@@ -1,7 +1,9 @@
 package Projet;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import static java.awt.event.MouseEvent.BUTTON1;
@@ -28,19 +30,19 @@ public class SlideListener extends MouseInputAdapter {
                 Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
                 if(current instanceof Resizable) {
                     Resizable zr = (Resizable)current;
-                    JLabel label = new JLabel(zr.textZone.getText());
-                    label.setSize(zr.getSize());
-                    label.setLocation(zr.getX(), zr.getY());
-                    currentSlide.getSlide().getItemsCurrentSlide().add(label);
-                    JLabel label2 = new JLabel(zr.textZone.getText());
-                    label2.setSize(new Dimension(10,10));
-                    label2.setLocation(zr.getX()-700, zr.getY()-200);
-                    //System.out.println(zr.getX());
-                    currentSlide.getSlide().getItemsMiniSlide().add(label2);
-                    
-                    currentSlide.getSlide().getItemsCurrentSlide().remove(i);
-                    this.app.notifyObserver();
-                    return;
+                    if(zr.image == null){
+                        
+                        zr.setBorder(BorderFactory.createEmptyBorder());                
+                        Font font = zr.textZone.getFont();
+                        
+                        JLabel labelOnMiniSlide = new JLabel(zr.textZone.getText());
+                        labelOnMiniSlide.setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
+                        labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
+                        labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
+                        currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
+                        
+                        this.app.notifyObserver();
+                    }
                 }
             }
 

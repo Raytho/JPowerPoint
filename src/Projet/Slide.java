@@ -16,7 +16,7 @@ public class Slide implements Comparable{
         double nb = Math.random();
         String nbS = String.valueOf(nb);
         JLabel nComp = new JLabel(nbS); //TODO : class (Cloneable) JLabel 
-        nComp.setSize(new Dimension(70,10));
+        nComp.setSize(new Dimension(33,4));
         Font newLabelFont=new Font(nComp.getFont().getName(),nComp.getFont().getStyle(),5);
         nComp.setFont(newLabelFont);
         JLabel nCompCopy = new JLabel(nbS);

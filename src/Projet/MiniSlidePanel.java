@@ -18,7 +18,7 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
         for(Component current : this.slide.getItemsMiniSlide()) {
             this.add(current);
         }
-        this.setPreferredSize(new Dimension(194,120));
+        this.setPreferredSize(new Dimension(950*10/45,600*10/45)); //   /4.5 ratio
         this.setMinimumSize(this.getPreferredSize());
         this.setMaximumSize(this.getPreferredSize());
         this.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -42,7 +42,6 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
         }else if(me.getButton() == MouseEvent.BUTTON3){
             PopUpMiniatures menu = new PopUpMiniatures();
             menu.show(this, me.getX(), me.getY());
-            System.out.println("ézeorg");
         }
     }
 

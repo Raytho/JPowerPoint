@@ -25,11 +25,10 @@ public class main{
         frame.setJMenuBar(menu);
         frame.add(tb, BorderLayout.NORTH);
         
-        
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout(5,5));
         JScrollPane scroll = new JScrollPane(mini);
-        scroll.setPreferredSize(new Dimension(230,500));
+        scroll.setPreferredSize(new Dimension(230,600));
         leftPanel.add(scroll, BorderLayout.NORTH);
         frame.add(leftPanel, BorderLayout.WEST);
         

@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.StyleConstants;
+
 
 public class Resizable extends JPanel{
     JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
@@ -22,8 +23,13 @@ public class Resizable extends JPanel{
         this.currentSlideView = currentSlide;
         this.setLayout(null);
         
+        
         if(image==null){
             textZone = new JTextPane();
+            textZone.setBorder(null);
+            int fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
+            StyleConstants.setFontSize(textZone.getInputAttributes(),fontSize + 20);
+           
             this.add(textZone);
             textZone.setBounds(1,1, size.width-2, size.height-2);
             this.image = null;
