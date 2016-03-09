@@ -5,10 +5,12 @@
  */
 package Projet;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -20,7 +22,9 @@ public class ResizableListener implements MouseListener, MouseMotionListener{
     @Override
     public void mouseClicked(MouseEvent me) {
         Resizable zr = (Resizable)me.getSource();
+        zr.setBorder(BorderFactory.createTitledBorder(""));
         zr.repaint();
+        System.out.println("zpfjeiorfj");    
     }
 
     @Override

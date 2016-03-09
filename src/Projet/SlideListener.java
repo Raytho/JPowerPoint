@@ -25,14 +25,13 @@ public class SlideListener extends MouseInputAdapter {
         if(me.getButton() == BUTTON1){
             CurrentSlideView currentSlide = (CurrentSlideView)me.getSource();
             
-            
             for(int i=0;i<=currentSlide.getSlide().getItemsCurrentSlide().size()-1;i++) {
                 Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
                 if(current instanceof Resizable) {
                     Resizable zr = (Resizable)current;
                     if(zr.image == null){
                         
-                        zr.setBorder(BorderFactory.createEmptyBorder());                
+                        zr.setBorder(null);                
                         Font font = zr.textZone.getFont();
                         
                         JLabel labelOnMiniSlide = new JLabel(zr.textZone.getText());

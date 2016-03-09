@@ -23,16 +23,16 @@ public class Resizable extends JPanel{
         this.currentSlideView = currentSlide;
         this.setLayout(null);
         
-        
         if(image==null){
             textZone = new JTextPane();
-            textZone.setBorder(null);
             int fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
             StyleConstants.setFontSize(textZone.getInputAttributes(),fontSize + 20);
            
             this.add(textZone);
             textZone.setBounds(1,1, size.width-2, size.height-2);
             this.image = null;
+            TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getApp());
+            this.textZone.addMouseListener(tzl);
         }else{
             this.textZone = null;
             this.image = image;
