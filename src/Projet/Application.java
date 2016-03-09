@@ -43,6 +43,15 @@ public class Application implements Observable{
     public ArrayList<Slide> getSlides() {
         return slides;
     }
+    
+    public Slide getSlideById(int id) {
+        for(Slide slide : this.getSlides()) {
+            if(slide.getId() == id) {
+                return slide;
+            }
+        }
+        return null;
+    }
 
     public int getSlideNumber() {
         return slideNumber;
