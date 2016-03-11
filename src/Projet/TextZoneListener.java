@@ -47,7 +47,7 @@ public class TextZoneListener implements MouseListener{
                         labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
                         currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
                         this.app.notifyObserver();
-                        zr.setSelected(false);
+                        zr.setSelected(true);
                     }
                 }
             }
