@@ -34,14 +34,14 @@ public class ResizableListener implements MouseListener, MouseMotionListener{
         y = zr.getY();
         xmouse = me.getXOnScreen();
         ymouse = me.getYOnScreen();
-        xtr = zr.dragTopRight.getX();
-        ytr = zr.dragTopRight.getY();
-        xtl = zr.dragTopLeft.getX();
-        ytl = zr.dragTopLeft.getY(); 
-        xbr = zr.dragBotRight.getX();
-        ybr = zr.dragBotRight.getY();
-        xbl = zr.dragBotLeft.getX();
-        ybl = zr.dragBotLeft.getY();  
+        xtr = zr.getDragTopRight().getX();
+        ytr = zr.getDragTopRight().getY();
+        xtl = zr.getDragTopLeft().getX();
+        ytl = zr.getDragTopLeft().getY(); 
+        xbr = zr.getDragBotRight().getX();
+        ybr = zr.getDragBotRight().getY();
+        xbl = zr.getDragBotLeft().getX();
+        ybl = zr.getDragBotLeft().getY();  
     }
 
     @Override
@@ -63,10 +63,10 @@ public class ResizableListener implements MouseListener, MouseMotionListener{
            int movex = me.getXOnScreen() - xmouse;
            int movey = me.getYOnScreen() - ymouse;
            zr.setLocation(x+movex, y+movey);
-           zr.dragTopLeft.setLocation(xtl+movex, ytl+movey);
-           zr.dragTopRight.setLocation(xtr+movex, ytr+movey);
-           zr.dragBotLeft.setLocation(xbl+movex, ybl+movey);
-           zr.dragBotRight.setLocation(xbr+movex, ybr+movey);
+           zr.getDragTopLeft().setLocation(xtl+movex, ytl+movey);
+           zr.getDragTopRight().setLocation(xtr+movex, ytr+movey);
+           zr.getDragBotLeft().setLocation(xbl+movex, ybl+movey);
+           zr.getDragBotRight().setLocation(xbr+movex, ybr+movey);
        }
     }
 

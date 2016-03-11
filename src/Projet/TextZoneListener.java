@@ -29,7 +29,7 @@ public class TextZoneListener implements MouseListener{
     public void mousePressed(MouseEvent me) {
         if(me.getButton() == BUTTON1 && zr.getBorder() == null){
             zr.setBorder(BorderFactory.createTitledBorder(""));
-            CurrentSlideView currentSlide = zr.currentSlideView;
+            CurrentSlideView currentSlide = zr.getCurrentSlideView();
             System.out.println("premier : " + (currentSlide.getSlide().getItemsCurrentSlide().size()-1));
             for(int i = currentSlide.getSlide().getItemsCurrentSlide().size()-1; i>=0; i--){
                 System.out.println("deuxiement");
@@ -37,14 +37,14 @@ public class TextZoneListener implements MouseListener{
                 if(previous instanceof Resizable) {
                     Resizable zr2 = (Resizable)previous;
                     System.out.println("troisiement");
-                    if(zr2.image == null){
-                        if(zr2.textZone != (JTextPane)me.getSource()){
+                    if(zr2.getImage() == null){
+                        if(zr2.getTextZone() != (JTextPane)me.getSource()){
                             zr2.setBorder(null);
                             zr2.repaint();
                         } 
                         System.out.println("quatriement");
-                        Font font = zr2.textZone.getFont();
-                        JLabel labelOnMiniSlide = new JLabel(zr2.textZone.getText());
+                        Font font = zr2.getTextZone().getFont();
+                        JLabel labelOnMiniSlide = new JLabel(zr2.getTextZone().getText());
                         labelOnMiniSlide.setSize(zr2.getSize().height*10/45, zr2.getSize().width*10/45);
                         labelOnMiniSlide.setLocation(zr2.getX()*10/45, zr2.getY()*10/45);
                         labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));

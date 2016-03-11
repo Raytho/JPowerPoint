@@ -23,33 +23,33 @@ public class DragListener implements MouseListener, MouseMotionListener{
     @Override
     public void mouseDragged(MouseEvent me) {
         JButton button = (JButton)me.getSource();
-        if(button == zr.dragBotRight && (width+me.getX()>5 && height+me.getY()>5)){
-            if(x+me.getX()<zr.currentSlideView.getWidth()){
+        if(button == zr.getDragBotRight() && (width+me.getX()>5 && height+me.getY()>5)){
+            if(x+me.getX()<zr.getCurrentSlideView().getWidth()){
                 zr.setSize(width+me.getX(), height+me.getY());
-                zr.textZone.setBounds(1,1, width+me.getX()-2, height+me.getY()-2);
-                zr.dragTopRight.setLocation(xtr+me.getX(), ytr);
-                zr.dragBotLeft.setLocation(xbl, ybl+me.getY());
+                zr.getTextZone().setBounds(1,1, width+me.getX()-2, height+me.getY()-2);
+                zr.getDragTopRight().setLocation(xtr+me.getX(), ytr);
+                zr.getDragBotLeft().setLocation(xbl, ybl+me.getY());
             }
-        }else if(button == zr.dragTopLeft && (width-me.getX() > 5 && height-me.getY() > 5)){
+        }else if(button == zr.getDragTopLeft() && (width-me.getX() > 5 && height-me.getY() > 5)){
             if(x+me.getX()>0 || y+me.getY()>0){ //to prevent growing outside the slide
                 zr.setSize(width-me.getX(), height-me.getY());
-                zr.textZone.setBounds(1,1, width-me.getX()-2, height-me.getY()-2);
+                zr.getTextZone().setBounds(1,1, width-me.getX()-2, height-me.getY()-2);
                 zr.setLocation(x+me.getX(),y+me.getY());
-                zr.dragTopRight.setLocation(xtr, ytr+me.getY());
-                zr.dragBotLeft.setLocation(xbl+me.getX(), ybl);
+                zr.getDragTopRight().setLocation(xtr, ytr+me.getY());
+                zr.getDragBotLeft().setLocation(xbl+me.getX(), ybl);
             }
-        }else if(button == zr.dragTopRight && (width+me.getX()>5 && height-me.getY()>5)){
+        }else if(button == zr.getDragTopRight() && (width+me.getX()>5 && height-me.getY()>5)){
             zr.setSize(width+me.getX(), height-me.getY());
-            zr.textZone.setBounds(1,1, width+me.getX()-2, height-me.getY()-2);
+            zr.getTextZone().setBounds(1,1, width+me.getX()-2, height-me.getY()-2);
             zr.setLocation(x,y+me.getY());
-            zr.dragTopLeft.setLocation(xtl, ytl+me.getY());
-            zr.dragBotRight.setLocation(xbr+me.getX(),ybr);
-        }else if(button == zr.dragBotLeft && (width-me.getX()>5 & height+me.getY()>5)){
+            zr.getDragTopLeft().setLocation(xtl, ytl+me.getY());
+            zr.getDragBotRight().setLocation(xbr+me.getX(),ybr);
+        }else if(button == zr.getDragBotLeft() && (width-me.getX()>5 & height+me.getY()>5)){
             zr.setSize(width-me.getX(), height+me.getY());
-            zr.textZone.setBounds(1,1, width-me.getX()-2, height+me.getY()-2);
+            zr.getTextZone().setBounds(1,1, width-me.getX()-2, height+me.getY()-2);
             zr.setLocation(x+me.getX(),y);
-            zr.dragTopLeft.setLocation(xtl+me.getX(),ytl);
-            zr.dragBotRight.setLocation(xbr, ybr+me.getY());
+            zr.getDragTopLeft().setLocation(xtl+me.getX(),ytl);
+            zr.getDragBotRight().setLocation(xbr, ybr+me.getY());
         }
     }
 
@@ -63,27 +63,27 @@ public class DragListener implements MouseListener, MouseMotionListener{
         height = zr.getHeight();
         x = zr.getX();
         y = zr.getY();
-        xtr = zr.dragTopRight.getX();
-        ytr = zr.dragTopRight.getY();
-        xtl = zr.dragTopLeft.getX();
-        ytl = zr.dragTopLeft.getY(); 
-        xbr = zr.dragBotRight.getX();
-        ybr = zr.dragBotRight.getY();
-        xbl = zr.dragBotLeft.getX();
-        ybl = zr.dragBotLeft.getY();  
+        xtr = zr.getDragTopRight().getX();
+        ytr = zr.getDragTopRight().getY();
+        xtl = zr.getDragTopLeft().getX();
+        ytl = zr.getDragTopLeft().getY(); 
+        xbr = zr.getDragBotRight().getX();
+        ybr = zr.getDragBotRight().getY();
+        xbl = zr.getDragBotLeft().getX();
+        ybl = zr.getDragBotLeft().getY();  
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         JButton button = (JButton)me.getSource();
-        if(button == zr.dragBotRight){
-            zr.dragBotRight.setLocation(zr.dragTopRight.getX(), zr.dragBotLeft.getY());
-        }else if(button == zr.dragTopLeft){
-            zr.dragTopLeft.setLocation(zr.dragBotLeft.getX(), zr.dragTopRight.getY());
-        }else if(button == zr.dragTopRight){
-            zr.dragTopRight.setLocation(zr.dragBotRight.getX(), zr.dragTopLeft.getY());
-        }else if(button == zr.dragBotLeft){
-            zr.dragBotLeft.setLocation(zr.dragTopLeft.getX(), zr.dragBotRight.getY());
+        if(button == zr.getDragBotRight()){
+            zr.getDragBotRight().setLocation(zr.getDragTopRight().getX(), zr.getDragBotLeft().getY());
+        }else if(button == zr.getDragTopLeft()){
+            zr.getDragTopLeft().setLocation(zr.getDragBotLeft().getX(), zr.getDragTopRight().getY());
+        }else if(button == zr.getDragTopRight()){
+            zr.getDragTopRight().setLocation(zr.getDragBotRight().getX(), zr.getDragTopLeft().getY());
+        }else if(button == zr.getDragBotLeft()){
+            zr.getDragBotLeft().setLocation(zr.getDragTopLeft().getX(), zr.getDragBotRight().getY());
         }
     }
 

@@ -12,10 +12,12 @@ import javax.swing.text.StyleConstants;
 
 
 public class Resizable extends JPanel{
-    JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
-    CurrentSlideView currentSlideView;
-    JTextPane textZone;
-    Image image;
+    private JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
+    private CurrentSlideView currentSlideView;
+    private JTextPane textZone;
+    private Image image;
+    
+    
     public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
@@ -77,5 +79,35 @@ public class Resizable extends JPanel{
         this.addMouseListener(jtal);
         this.addMouseMotionListener(jtal);
     }
+
+    public JButton getDragTopLeft() {
+        return dragTopLeft;
+    }
+
+    public JButton getDragTopRight() {
+        return dragTopRight;
+    }
+
+    public JButton getDragBotLeft() {
+        return dragBotLeft;
+    }
+
+    public JButton getDragBotRight() {
+        return dragBotRight;
+    }
+
+    public CurrentSlideView getCurrentSlideView() {
+        return currentSlideView;
+    }
+
+    public JTextPane getTextZone() {
+        return textZone;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+    
+    
     
 }

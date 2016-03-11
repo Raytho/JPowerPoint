@@ -29,12 +29,13 @@ public class SlideListener extends MouseInputAdapter {
                 Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
                 if(current instanceof Resizable) {
                     Resizable zr = (Resizable)current;
-                    if(zr.image == null){
+                    
+                    if(zr.getImage() == null){
                         
                         zr.setBorder(null);                
-                        Font font = zr.textZone.getFont();
+                        Font font = zr.getTextZone().getFont();
                         
-                        JLabel labelOnMiniSlide = new JLabel(zr.textZone.getText());
+                        JLabel labelOnMiniSlide = new JLabel(zr.getTextZone().getText());
                         labelOnMiniSlide.setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
                         labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
                         labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
@@ -51,15 +52,15 @@ public class SlideListener extends MouseInputAdapter {
             currentSlide.getSlide().addCurrentSlideComponent(zr);
 
             currentSlide.add(zr);
-            currentSlide.add(zr.dragTopLeft);
-            currentSlide.add(zr.dragTopRight);
-            currentSlide.add(zr.dragBotLeft);
-            currentSlide.add(zr.dragBotRight);
+            currentSlide.add(zr.getDragTopLeft());
+            currentSlide.add(zr.getDragTopRight());
+            currentSlide.add(zr.getDragBotLeft());
+            currentSlide.add(zr.getDragBotRight());
             currentSlide.setComponentZOrder(zr, 1);
-            currentSlide.setComponentZOrder(zr.dragTopLeft, 0);
-            currentSlide.setComponentZOrder(zr.dragTopRight, 0);
-            currentSlide.setComponentZOrder(zr.dragBotLeft, 0);
-            currentSlide.setComponentZOrder(zr.dragBotRight, 0);
+            currentSlide.setComponentZOrder(zr.getDragTopLeft(), 0);
+            currentSlide.setComponentZOrder(zr.getDragTopRight(), 0);
+            currentSlide.setComponentZOrder(zr.getDragBotLeft(), 0);
+            currentSlide.setComponentZOrder(zr.getDragBotRight(), 0);
             currentSlide.validate();
             currentSlide.repaint();
         }
