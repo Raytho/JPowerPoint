@@ -15,7 +15,7 @@ public class main{
         
         MiniaturesView mini = new MiniaturesView(app);
         app.addObserver(mini);
-        Toolbar tb = new Toolbar();
+        Toolbar tb = new Toolbar(app);
         Menu menu = new Menu();
         
         JFrame frame = new JFrame("PowerPoint");

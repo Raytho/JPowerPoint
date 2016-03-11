@@ -20,7 +20,7 @@ public class CurrentSlideView extends JPanel implements Observer{
         this.setLayout(null);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBackground(Color.white);
-        this.addMouseListener(new SlideListener(this.app));
+        //this.addMouseListener(new SlideListener(this.app));
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }

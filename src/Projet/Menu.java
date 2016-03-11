@@ -12,20 +12,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 public class Menu extends JMenuBar{
-
     JMenu fileMenu = new JMenu("File");
     JMenu editMenu = new JMenu("Insertion");
-    /*JTextField rWidth = new JTextField("Rectangle Width");
-    JTextField rLength = new JTextField("Rectangle Length");
-    JTextField eX = new JTextField("Ellipse position X");
-    JTextField eY = new JTextField("Ellipse position Y");
-    JTextField eWidth = new JTextField("Ellipse width");
-    JTextField eLength = new JTextField("Ellipse Length");*/
     
-    public Menu(){
-        
-        
-  
+    
+    public Menu(){  
         fileMenu.setMnemonic(KeyEvent.VK_F);
         JMenuItem newF = new JMenuItem("New", KeyEvent.VK_N);
         fileMenu.add(newF);
@@ -40,27 +31,10 @@ public class Menu extends JMenuBar{
         
         editMenu.setMnemonic(KeyEvent.VK_I);
         JMenu rectI = new JMenu("Rectangle");
-        /*JMenuItem createRect = new JMenuItem("Add");
-        createRect.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                
-            }
-        });*/
-        //rectI.add(createRect);
-        //rectI.add(rWidth);
-        //rectI.add(rLength);
-        /*rectI.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                
-            }
-        });
-        */
+        
         editMenu.add(rectI);
         JMenu ellipseI = new JMenu("Ellipse");
-        /*ellipseI.add(eX);
-        ellipseI.add(eY);
-        ellipseI.add(eWidth);
-        ellipseI.add(eLength);*/
+        
         editMenu.add(ellipseI);
         
         this.add(editMenu);
