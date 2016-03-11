@@ -45,7 +45,15 @@ public class TextZoneListener implements MouseListener{
                         labelOnMiniSlide.setSize(zr2.getSize().height*10/45, zr2.getSize().width*10/45);
                         labelOnMiniSlide.setLocation(zr2.getX()*10/45, zr2.getY()*10/45);
                         labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
-                        currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
+                        if(zr2.getText() == null) {
+                            currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
+                            zr2.setText(labelOnMiniSlide);
+                        }
+                        else {
+                            currentSlide.getSlide().getItemsMiniSlide().remove(zr2.getText());
+                            zr2.setText(labelOnMiniSlide);
+                            currentSlide.getSlide().getItemsMiniSlide().add(zr2.getText());
+                        }
                         this.app.notifyObserver();
                         zr.setSelected(true);
                     }

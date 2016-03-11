@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.StyleConstants;
@@ -16,6 +17,7 @@ public class Resizable extends JPanel{
     private CurrentSlideView currentSlideView;
     private JTextPane textZone;
     private Image image;
+    private JLabel text = null;
     private boolean selected = true;
     
     public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image){
@@ -114,5 +116,13 @@ public class Resizable extends JPanel{
 
     public void setSelected(boolean selected) {
         this.selected = selected;
-    }   
+    } 
+
+    public JLabel getText() {
+        return text;
+    }
+
+    public void setText(JLabel text) {
+        this.text = text;
+    }
 }

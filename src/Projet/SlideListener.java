@@ -32,17 +32,33 @@ public class SlideListener extends MouseInputAdapter {
                     
                     if(zr.isSelected() && zr.getImage() == null){
                         
-                        zr.setBorder(null);                
-                        Font font = zr.getTextZone().getFont();
-                        
-                        JLabel labelOnMiniSlide = new JLabel(zr.getTextZone().getText());
-                        labelOnMiniSlide.setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
-                        labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
-                        labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
-                        currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
-                        
-                        this.app.notifyObserver();
-                        zr.setSelected(false);
+                        if(!zr.getTextZone().getText().isEmpty()) {
+                            zr.setBorder(null);                
+                            Font font = zr.getTextZone().getFont();
+
+                            JLabel labelOnMiniSlide = new JLabel(zr.getTextZone().getText());
+                            labelOnMiniSlide.setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
+                            labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
+                            labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
+                            if(zr.getText() == null) {
+                                currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
+                                zr.setText(labelOnMiniSlide);
+                            }
+                            else {
+                                currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
+                                zr.setText(labelOnMiniSlide);
+                                currentSlide.getSlide().getItemsMiniSlide().add(zr.getText());
+                            }
+                            
+
+                            this.app.notifyObserver();
+                            zr.setSelected(false);
+                        }
+                        else {
+                            currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
+                            currentSlide.getSlide().getItemsCurrentSlide().remove(zr);
+                            this.app.notifyObserver();
+                        }
                         return;
                     }
                 }
