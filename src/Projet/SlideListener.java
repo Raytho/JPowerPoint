@@ -30,7 +30,7 @@ public class SlideListener extends MouseInputAdapter {
                 if(current instanceof Resizable) {
                     Resizable zr = (Resizable)current;
                     
-                    if(zr.getImage() == null){
+                    if(zr.isSelected() && zr.getImage() == null){
                         
                         zr.setBorder(null);                
                         Font font = zr.getTextZone().getFont();
@@ -42,6 +42,8 @@ public class SlideListener extends MouseInputAdapter {
                         currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
                         
                         this.app.notifyObserver();
+                        zr.setSelected(false);
+                        return;
                     }
                 }
             }

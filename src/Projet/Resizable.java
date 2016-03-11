@@ -16,7 +16,7 @@ public class Resizable extends JPanel{
     private CurrentSlideView currentSlideView;
     private JTextPane textZone;
     private Image image;
-    
+    private boolean selected = true;
     
     public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image){
         Dimension size = new Dimension(200,100);
@@ -107,7 +107,12 @@ public class Resizable extends JPanel{
     public Image getImage() {
         return image;
     }
-    
-    
-    
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }   
 }

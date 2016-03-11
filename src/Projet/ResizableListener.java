@@ -24,7 +24,7 @@ public class ResizableListener implements MouseListener, MouseMotionListener{
         Resizable zr = (Resizable)me.getSource();
         zr.setBorder(BorderFactory.createTitledBorder(""));
         zr.repaint();
-        System.out.println("zpfjeiorfj");    
+        zr.setSelected(true);
     }
 
     @Override

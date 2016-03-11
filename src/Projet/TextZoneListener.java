@@ -38,6 +38,7 @@ public class TextZoneListener implements MouseListener{
                         if(zr2.getTextZone() != (JTextPane)me.getSource()){
                             zr2.setBorder(null);
                             zr2.repaint();
+                            zr2.setSelected(false);
                         } 
                         Font font = zr2.getTextZone().getFont();
                         JLabel labelOnMiniSlide = new JLabel(zr2.getTextZone().getText());
@@ -46,7 +47,7 @@ public class TextZoneListener implements MouseListener{
                         labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
                         currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
                         this.app.notifyObserver();
-
+                        zr.setSelected(false);
                     }
                 }
             }
