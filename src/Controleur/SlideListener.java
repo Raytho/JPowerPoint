@@ -68,7 +68,7 @@ public class SlideListener extends MouseInputAdapter {
             }
 
 
-            Resizable zr = new Resizable(5, 20, me.getX(), me.getY(), currentSlide, null);
+            Resizable zr = new Resizable(5, 20, me.getX(), me.getY(), currentSlide, null, app);
             zr.setBorder(BorderFactory.createTitledBorder(""));
             currentSlide.getSlide().addCurrentSlideComponent(zr);
 

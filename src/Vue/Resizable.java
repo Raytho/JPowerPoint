@@ -3,6 +3,7 @@ package Vue;
 import Controleur.TextZoneListener;
 import Controleur.ResizableListener;
 import Controleur.DragListener;
+import Modele.Application;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -22,19 +23,23 @@ public class Resizable extends JPanel{
     private Image image;
     private JLabel text = null;
     private boolean selected = true;
+    int fontSize;
+    Application app;
     
-    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image){
+    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Application app){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
         this.setBackground(Color.white);
         this.currentSlideView = currentSlide;
         this.setLayout(null);
+        this.app = app;
         
         if(image==null){
             textZone = new JTextPane();
-            int fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
-            StyleConstants.setFontSize(textZone.getInputAttributes(),fontSize + 20);
-           
+            fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
+            StyleConstants.setFontSize(textZone.getInputAttributes(),app.getTextSize());
+            System.out.println("taile : " + app.getTextSize());
+            textZone.setForeground(this.app.getTextColor());
             this.add(textZone);
             textZone.setBounds(1,1, size.width-2, size.height-2);
             this.image = null;

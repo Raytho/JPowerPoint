@@ -1,14 +1,16 @@
 package Modele;
 import Observe.*;
 import Vue.CurrentSlideView;
-import java.io.Serializable;
+import java.awt.Color;
 import java.util.ArrayList;
 
-public class Application implements Observable, Serializable{
+public class Application implements Observable{
     private ArrayList<Slide> slides = new ArrayList<Slide>();
     private int slideNumber = 1;
     private ArrayList<Observer> listObserver = new ArrayList<Observer>();
     private CurrentSlideView currentSlide;
+    private Color textColor;
+    private int textSize = 30;
     
     public Application() {
         this.slides.add(new Slide(0));  //par défaut on a un slide
@@ -94,5 +96,23 @@ public class Application implements Observable, Serializable{
         }
         return result;
     }
+
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+    
+    
     
 }
