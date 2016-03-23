@@ -3,16 +3,17 @@ package Modele;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
-public class Slide implements Comparable{
+public class Slide implements Comparable, Serializable{
     private int id;
     private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); //Différents trucs bidules dans le slide
     private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
     private boolean isHighlighted = false;
     
-    public void addComponent(){
+    /*public void addComponent(){
         double nb = Math.random();
         String nbS = String.valueOf(nb);
         JLabel nComp = new JLabel(nbS); //TODO : class (Cloneable) JLabel 
@@ -23,12 +24,7 @@ public class Slide implements Comparable{
         nCompCopy.setSize(new Dimension(150,20));
         this.itemsMiniSlide.add(nComp);
         this.itemsCurrentSlide.add(nCompCopy);
-    }
-    
-    public void addComponent(Component comp) {
-        this.itemsMiniSlide.add(comp);
-        this.itemsCurrentSlide.add(comp);
-    }
+    }*/
     
     public void addCurrentSlideComponent (Component comp) {
         this.itemsCurrentSlide.add(comp);
@@ -36,7 +32,7 @@ public class Slide implements Comparable{
     
     public Slide(int id) {
         this.id = id;
-        addComponent();
+        //addComponent();
     }
 
     public ArrayList<Component> getItemsMiniSlide() {

@@ -1,6 +1,7 @@
 
 package Vue;
 
+import Controleur.SlideListener;
 import Modele.Application;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,5 +1,8 @@
 package Vue;
 
+import Controleur.TextZoneListener;
+import Controleur.ResizableListener;
+import Controleur.DragListener;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;

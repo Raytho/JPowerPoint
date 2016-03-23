@@ -1,9 +1,10 @@
 package Modele;
 import Observe.*;
 import Vue.CurrentSlideView;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Application implements Observable{
+public class Application implements Observable, Serializable{
     private ArrayList<Slide> slides = new ArrayList<Slide>();
     private int slideNumber = 1;
     private ArrayList<Observer> listObserver = new ArrayList<Observer>();
