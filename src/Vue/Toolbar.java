@@ -5,6 +5,7 @@ import Controleur.SlideListener;
 import Modele.Application;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -63,25 +64,34 @@ public class Toolbar extends JToolBar {
         };
         textColorButton.addActionListener(colorButtonListener);
         this.add(textColorButton);
-
+        
+        String[] fonts = { "Arial", "Calibri", "Vladimir Script", "Times New Roman", "Sylfaen"};
+        JComboBox fontsList = new JComboBox(fonts);
+        ActionListener fontsListListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                app.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN, app.getTextSize()));
+            }        
+        };
+        fontsList.addActionListener(fontsListListener);
+        
         String[] textSizes = { "15", "30", "42", "60", "72" };
         JComboBox sizeList = new JComboBox(textSizes);
+        sizeList.setSelectedIndex(1);
         ActionListener sizeListListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 int k = Integer.parseInt((String)sizeList.getSelectedItem());
                 app.setTextSize(k);
+                app.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN,k));
             }        
         };
         sizeList.addActionListener(sizeListListener);
-        this.add(sizeList);
         
-        JButton swag4 = new JButton("k4");
+        this.add(sizeList);
+        this.add(fontsList);
+        
         JButton swag5 = new JButton("k5");
-
-
-
-        this.add(swag4);
         this.add(swag5);
 
     }

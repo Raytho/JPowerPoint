@@ -2,6 +2,7 @@ package Modele;
 import Observe.*;
 import Vue.CurrentSlideView;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 public class Application implements Observable{
@@ -11,6 +12,7 @@ public class Application implements Observable{
     private CurrentSlideView currentSlide;
     private Color textColor;
     private int textSize = 30;
+    private Font font = new Font("Arial", Font.PLAIN, textSize);
     
     public Application() {
         this.slides.add(new Slide(0));  //par défaut on a un slide
@@ -111,6 +113,14 @@ public class Application implements Observable{
 
     public void setTextSize(int textSize) {
         this.textSize = textSize;
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
     
     

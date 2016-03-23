@@ -26,7 +26,7 @@ public class main{
         JFrame frame = new JFrame("PowerPoint");
         frame.setLayout(new BorderLayout(5,5));
         //frame.setResizable(false);
-        
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setJMenuBar(menu);
         frame.add(tb, BorderLayout.NORTH);
         

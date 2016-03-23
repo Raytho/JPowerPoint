@@ -36,12 +36,13 @@ public class Resizable extends JPanel{
         
         if(image==null){
             textZone = new JTextPane();
-            fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
-            StyleConstants.setFontSize(textZone.getInputAttributes(),app.getTextSize());
+            /*fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
+            StyleConstants.setFontSize(textZone.getInputAttributes(),app.getTextSize());*/
             System.out.println("taile : " + app.getTextSize());
             textZone.setForeground(this.app.getTextColor());
-            this.add(textZone);
+            textZone.setFont(this.app.getFont());
             textZone.setBounds(1,1, size.width-2, size.height-2);
+            this.add(textZone);
             this.image = null;
             TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getApp());
             this.textZone.addMouseListener(tzl);
