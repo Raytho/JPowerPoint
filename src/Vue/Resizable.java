@@ -1,4 +1,4 @@
-package Projet;
+package Vue;
 
 import java.awt.Color;
 import java.awt.Cursor;

@@ -1,4 +1,4 @@
-package Projet;
+package Vue;
 
 public class MainFrame {
     

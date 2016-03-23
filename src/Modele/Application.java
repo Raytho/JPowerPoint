@@ -1,5 +1,6 @@
-package Projet;
+package Modele;
 import Observe.*;
+import Vue.CurrentSlideView;
 import java.util.ArrayList;
 
 public class Application implements Observable{

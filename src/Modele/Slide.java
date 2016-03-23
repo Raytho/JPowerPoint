@@ -1,4 +1,4 @@
-package Projet;
+package Modele;
 
 import java.awt.Component;
 import java.awt.Dimension;

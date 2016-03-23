@@ -1,5 +1,6 @@
-package Projet;
+package Vue;
 
+import Modele.Application;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

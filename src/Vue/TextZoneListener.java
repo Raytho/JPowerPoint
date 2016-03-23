@@ -1,5 +1,6 @@
-package Projet;
+package Vue;
 
+import Modele.Application;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseEvent;

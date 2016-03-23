@@ -1,5 +1,10 @@
-package Projet;
+package Controleur;
+import Modele.Application;
 import Observe.Observer;
+import Vue.CurrentSlideView;
+import Vue.Menu;
+import Vue.MiniaturesView;
+import Vue.Toolbar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +25,7 @@ public class main{
         
         JFrame frame = new JFrame("PowerPoint");
         frame.setLayout(new BorderLayout(5,5));
-        frame.setResizable(false);
+        //frame.setResizable(false);
         
         frame.setJMenuBar(menu);
         frame.add(tb, BorderLayout.NORTH);

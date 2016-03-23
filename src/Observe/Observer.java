@@ -1,5 +1,5 @@
 package Observe;
-import Projet.Application;
+import Modele.Application;
 
 public interface Observer {
     public void update(Application app);

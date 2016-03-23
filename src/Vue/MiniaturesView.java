@@ -1,4 +1,6 @@
-package Projet;
+package Vue;
+import Modele.Slide;
+import Modele.Application;
 import Observe.Observer;
 import java.awt.Color;
 import java.awt.Component;

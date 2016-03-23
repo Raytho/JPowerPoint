@@ -1,5 +1,7 @@
-package Projet;
+package Vue;
 
+import Modele.Slide;
+import Modele.Application;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
@@ -22,7 +24,7 @@ public class PopUpMiniatures extends JPopupMenu{
             public void actionPerformed(ActionEvent ae) {
                 int id = slide.getId();
                 if(app.getSlideNumber()-1 == 0) {
-                    JOptionPane.showMessageDialog(null, "You can't delete the only slide", "WARNING", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "You cannot delete the only slide", "WARNING", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
                     if(id == 0) {
