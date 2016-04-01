@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -91,8 +92,19 @@ public class Toolbar extends JToolBar {
         this.add(sizeList);
         this.add(fontsList);
         
-        JButton swag5 = new JButton("k5");
-        this.add(swag5);
+        JButton launch = new JButton("Launch presentation");
+        ActionListener launcher = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                JFrame presentation = new JFrame();
+                presentation.add(app.getCurrentSlide());
+                presentation.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                presentation.setUndecorated(true);
+                presentation.setVisible(true);
+            }        
+        };
+        launch.addActionListener(launcher);
+        this.add(launch);
 
     }
     

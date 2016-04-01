@@ -29,7 +29,6 @@ public class main{
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setJMenuBar(menu);
         frame.add(tb, BorderLayout.NORTH);
-        
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout(5,5));
         JScrollPane scroll = new JScrollPane(mini);
