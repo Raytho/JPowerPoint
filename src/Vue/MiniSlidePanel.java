@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 
 public class MiniSlidePanel extends JPanel implements MouseListener{
     private Slide slide;
-    private Presentation app;
+    private Presentation presentation;
     
-    public MiniSlidePanel(Slide slide, Presentation app) {
+    public MiniSlidePanel(Slide slide, Presentation presentation) {
         this.slide = slide;
         this.setLayout(null);
-        this.app = app;
+        this.presentation = presentation;
         for(Component current : this.slide.getItemsMiniSlide()) {
             this.add(current);
         }
@@ -35,14 +35,15 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent me) {
         if(me.getButton() == MouseEvent.BUTTON1){
-            for(Slide current : this.app.getSlides()){
+            for(Slide current : this.presentation.getSlides()){
                 current.setHighlight(false);
             }
             this.slide.setHighlight(true);
-            this.app.setCurrentSlideModel(slide);
-            this.app.notifyObserver();
-        }else if(me.getButton() == MouseEvent.BUTTON3){
-            PopUpMiniatures menu = new PopUpMiniatures(this.app, this.slide);
+            this.presentation.setCurrentSlideModel(slide);
+            this.presentation.notifyObserver();
+        }
+        else if(me.getButton() == MouseEvent.BUTTON3){
+            PopUpMiniatures menu = new PopUpMiniatures(this.presentation, this.slide);
             menu.show(this, me.getX(), me.getY());
         }
     }

@@ -13,6 +13,11 @@ public class Slide implements Comparable, Serializable{
     private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
     private boolean isHighlighted = false;
     
+    public Slide(int id) {
+        this.id = id;
+        //addComponent();
+    }
+    
     /*public void addComponent(){
         double nb = Math.random();
         String nbS = String.valueOf(nb);
@@ -28,11 +33,6 @@ public class Slide implements Comparable, Serializable{
     
     public void addCurrentSlideComponent (Component comp) {
         this.itemsCurrentSlide.add(comp);
-    }
-    
-    public Slide(int id) {
-        this.id = id;
-        //addComponent();
     }
 
     public ArrayList<Component> getItemsMiniSlide() {

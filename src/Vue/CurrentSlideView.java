@@ -5,10 +5,7 @@ import Observe.Observer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.PopupMenu;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CurrentSlideView extends JPanel implements Observer{
@@ -44,7 +41,9 @@ public class CurrentSlideView extends JPanel implements Observer{
 
     @Override
     public void update(Presentation presentation) {
+        this.slide = this.presentation.getCurrentSlideModel();
         this.removeAll();
+        System.out.println("id = " + this.slide.getId());
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }

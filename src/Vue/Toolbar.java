@@ -29,7 +29,6 @@ public class Toolbar extends JToolBar {
             @Override
             public void actionPerformed(ActionEvent ae) {
               if(slideListener != null) {
-                  System.out.println(mainFrame.getCurrentSlideView());
                   mainFrame.getCurrentSlideView().removeMouseListener(slideListener);
                   slideListener = null;
               }
