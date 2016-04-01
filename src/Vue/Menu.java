@@ -2,6 +2,7 @@
 
 package Vue;
 
+import Controleur.BinaryFileTools;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,11 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Menu extends JMenuBar{
-    JMenu fileMenu = new JMenu("File");
-    JMenu editMenu = new JMenu("Insertion");
+    private JMenu fileMenu = new JMenu("File");
+    private JMenu editMenu = new JMenu("Insertion");
+    private MainFrame mainFrame;
     
     
-    public Menu(){  
+    public Menu(MainFrame mainFrame){  
+        this.mainFrame = mainFrame;
         fileMenu.setMnemonic(KeyEvent.VK_F);
         JMenuItem newF = new JMenuItem("New", KeyEvent.VK_N);
         fileMenu.add(newF);
@@ -30,10 +33,11 @@ public class Menu extends JMenuBar{
         ActionListener SaveListener = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    String filename = JOptionPane.showInputDialog("Name this file");
                     JFileChooser savefile = new JFileChooser();
-                    savefile.setSelectedFile(new File(filename));
-        savefile.showSaveDialog(savefile);
+                    savefile.setSelectedFile(new File("newPresentation.ser"));
+                    savefile.showSaveDialog(savefile);
+                    BinaryFileTools.SavePresentation(savefile.getSelectedFile().toString(), mainFrame.getPresentation());
+                    //System.out.println(savefile.getSelectedFile());
                 }
         };       
         saveF.addActionListener(SaveListener);

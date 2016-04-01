@@ -23,7 +23,7 @@ public class MainFrame extends JFrame{
         Toolbar toolbar = new Toolbar(presentation, this);
         this.add(toolbar, BorderLayout.NORTH);
         
-        Menu menu = new Menu();
+        Menu menu = new Menu(this);
         this.setJMenuBar(menu);
         
         this.newMiniaturesView();

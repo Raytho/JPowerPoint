@@ -2,9 +2,10 @@ package Modele;
 import Observe.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Presentation implements Observable{
+public class Presentation implements Observable, Serializable{
     private ArrayList<Slide> slides = new ArrayList<Slide>();
     private int slideNumber = 1;
     private transient ArrayList<Observer> listObserver = new ArrayList<Observer>();
