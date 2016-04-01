@@ -1,6 +1,6 @@
 package Observe;
-import Modele.Application;
+import Modele.Presentation;
 
 public interface Observer {
-    public void update(Application app);
+    public void update(Presentation app);
 }

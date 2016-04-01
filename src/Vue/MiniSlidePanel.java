@@ -1,6 +1,6 @@
 package Vue;
 import Modele.Slide;
-import Modele.Application;
+import Modele.Presentation;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 
 public class MiniSlidePanel extends JPanel implements MouseListener{
     private Slide slide;
-    private Application app;
+    private Presentation app;
     
-    public MiniSlidePanel(Slide slide, Application app) {
+    public MiniSlidePanel(Slide slide, Presentation app) {
         this.slide = slide;
         this.setLayout(null);
         this.app = app;
@@ -39,7 +39,7 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
                 current.setHighlight(false);
             }
             this.slide.setHighlight(true);
-            this.app.getCurrentSlide().setSlide(slide);
+            this.app.setCurrentSlideModel(slide);
             this.app.notifyObserver();
         }else if(me.getButton() == MouseEvent.BUTTON3){
             PopUpMiniatures menu = new PopUpMiniatures(this.app, this.slide);

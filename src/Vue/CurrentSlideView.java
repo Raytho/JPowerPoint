@@ -1,6 +1,6 @@
 package Vue;
 import Modele.Slide;
-import Modele.Application;
+import Modele.Presentation;
 import Observe.Observer;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,16 +13,15 @@ import javax.swing.JPanel;
 
 public class CurrentSlideView extends JPanel implements Observer{
     private Slide slide;
-    private Application app;
+    private Presentation presentation;
     
-    public CurrentSlideView(Slide slide, Application app) {
+    public CurrentSlideView(Slide slide, Presentation presentation) {
         this.slide = slide;
-        this.app = app;
+        this.presentation = presentation;
         this.setPreferredSize(new Dimension(950,600));
         this.setLayout(null);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBackground(Color.white);
-        //this.addMouseListener(new SlideListener(this.app));
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }
@@ -38,13 +37,13 @@ public class CurrentSlideView extends JPanel implements Observer{
         return slide;
     }
 
-    public Application getApp() {
-        return app;
+    public Presentation getPresentation() {
+        return presentation;
     }
 
 
     @Override
-    public void update(Application app) {
+    public void update(Presentation presentation) {
         this.removeAll();
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);

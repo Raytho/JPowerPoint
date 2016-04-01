@@ -1,6 +1,6 @@
 package Controleur;
 
-import Modele.Application;
+import Modele.Presentation;
 import Vue.CurrentSlideView;
 import Vue.Resizable;
 import java.awt.Color;
@@ -17,9 +17,9 @@ import javax.swing.event.MouseInputAdapter;
 
 
 public class SlideListener extends MouseInputAdapter {
-    private Application app;
+    private Presentation app;
     
-    public SlideListener(Application app) {
+    public SlideListener(Presentation app) {
         this.app = app;
     }
     
@@ -53,7 +53,6 @@ public class SlideListener extends MouseInputAdapter {
                                 currentSlide.getSlide().getItemsMiniSlide().add(zr.getText());
                             }
                             
-
                             this.app.notifyObserver();
                             zr.setSelected(false);
                         }

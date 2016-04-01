@@ -1,52 +1,11 @@
 package Controleur;
-import Modele.Application;
-import Observe.Observer;
-import Vue.CurrentSlideView;
-import Vue.Menu;
-import Vue.MiniaturesView;
-import Vue.Toolbar;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import Modele.Presentation;
+import Vue.MainFrame;
 
 public class main{
 
     public static void main(String[] args) {
-        Application app = new Application();
-        
-        MiniaturesView mini = new MiniaturesView(app);
-        app.addObserver(mini);
-        Toolbar tb = new Toolbar(app);
-        Menu menu = new Menu();
-        
-        JFrame frame = new JFrame("PowerPoint");
-        frame.setLayout(new BorderLayout(5,5));
-        //frame.setResizable(false);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setJMenuBar(menu);
-        frame.add(tb, BorderLayout.NORTH);
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BorderLayout(5,5));
-        JScrollPane scroll = new JScrollPane(mini);
-        scroll.setPreferredSize(new Dimension(230,600));
-        leftPanel.add(scroll, BorderLayout.NORTH);
-        frame.add(leftPanel, BorderLayout.WEST);
-        
-        CurrentSlideView currentSlide = new CurrentSlideView(app.getSlides().get(0), app);
-        app.setCurrentSlide(currentSlide);
-        app.addObserver(currentSlide);
-        JPanel rightPanel = new JPanel();
-        rightPanel.add(currentSlide);
-        rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        frame.add(rightPanel, BorderLayout.CENTER);
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 700);
-        frame.setVisible(true);
-    }
-    
+        Presentation presentation = new Presentation();
+        MainFrame mainFrame = new MainFrame(presentation);
+    }   
 }

@@ -3,7 +3,7 @@ package Vue;
 import Controleur.TextZoneListener;
 import Controleur.ResizableListener;
 import Controleur.DragListener;
-import Modele.Application;
+import Modele.Presentation;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -24,9 +24,9 @@ public class Resizable extends JPanel{
     private JLabel text = null;
     private boolean selected = true;
     int fontSize;
-    Application app;
+    Presentation app;
     
-    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Application app){
+    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Presentation app){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
         this.setBackground(Color.white);
@@ -44,7 +44,7 @@ public class Resizable extends JPanel{
             textZone.setBounds(1,1, size.width-2, size.height-2);
             this.add(textZone);
             this.image = null;
-            TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getApp());
+            TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getPresentation());
             this.textZone.addMouseListener(tzl);
         }else{
             this.textZone = null;

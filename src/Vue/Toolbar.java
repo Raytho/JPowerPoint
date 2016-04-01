@@ -2,37 +2,36 @@
 package Vue;
 
 import Controleur.SlideListener;
-import Modele.Application;
+import Modele.Presentation;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 public class Toolbar extends JToolBar {
-    MouseListener tzal = null;
-    Application app;
+    private MouseListener slideListener = null;
+    private Presentation presentation;
+    private MainFrame mainFrame;
     
-    public Toolbar(Application app){
+    
+    public Toolbar(Presentation presentation, MainFrame mainFrame){
         this.setRollover(true);
-        this.app = app;
+        this.presentation = presentation;
+        this.mainFrame = mainFrame;
 
         JButton selectButton = new JButton("select");
         ActionListener selectButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-              if(tzal != null) {
-                  app.getCurrentSlide().removeMouseListener(tzal);
-                  tzal = null;
+              if(slideListener != null) {
+                  System.out.println(mainFrame.getCurrentSlideView());
+                  mainFrame.getCurrentSlideView().removeMouseListener(slideListener);
+                  slideListener = null;
               }
             }        
         };
@@ -43,8 +42,9 @@ public class Toolbar extends JToolBar {
         ActionListener textZoneButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               tzal = new SlideListener(app);
-               app.getCurrentSlide().addMouseListener(tzal);
+               slideListener = new SlideListener(presentation);
+               mainFrame.getCurrentSlideView().addMouseListener(slideListener);
+               System.out.println(mainFrame.getCurrentSlideView());
             }        
         };
         textZoneButton.addActionListener(textZoneButtonListener);
@@ -59,7 +59,7 @@ public class Toolbar extends JToolBar {
                Color newColor = JColorChooser.showDialog(null, "Change background color",textColorButton.getBackground());
                if(newColor != null){
                    textColorButton.setBackground(newColor);
-                   app.setTextColor(newColor);
+                   presentation.setTextColor(newColor);
                }
             }        
         };
@@ -71,7 +71,7 @@ public class Toolbar extends JToolBar {
         ActionListener fontsListListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                app.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN, app.getTextSize()));
+                presentation.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN, presentation.getTextSize()));
             }        
         };
         fontsList.addActionListener(fontsListListener);
@@ -82,30 +82,14 @@ public class Toolbar extends JToolBar {
         ActionListener sizeListListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int k = Integer.parseInt((String)sizeList.getSelectedItem());
-                app.setTextSize(k);
-                app.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN,k));
+                int selectedSize = Integer.parseInt((String)sizeList.getSelectedItem());
+                presentation.setTextSize(selectedSize);
+                presentation.setFont(new Font((String)fontsList.getSelectedItem(), Font.PLAIN,selectedSize));
             }        
         };
         sizeList.addActionListener(sizeListListener);
         
         this.add(sizeList);
         this.add(fontsList);
-        
-        JButton launch = new JButton("Launch presentation");
-        ActionListener launcher = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                JFrame presentation = new JFrame();
-                presentation.add(app.getCurrentSlide());
-                presentation.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-                presentation.setUndecorated(true);
-                presentation.setVisible(true);
-            }        
-        };
-        launch.addActionListener(launcher);
-        this.add(launch);
-
-    }
-    
+    } 
 }

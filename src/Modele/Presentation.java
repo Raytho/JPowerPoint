@@ -5,16 +5,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-public class Application implements Observable{
+public class Presentation implements Observable{
     private ArrayList<Slide> slides = new ArrayList<Slide>();
     private int slideNumber = 1;
-    private ArrayList<Observer> listObserver = new ArrayList<Observer>();
-    private CurrentSlideView currentSlide;
-    private Color textColor;
-    private int textSize = 30;
-    private Font font = new Font("Arial", Font.PLAIN, textSize);
+    private transient ArrayList<Observer> listObserver = new ArrayList<Observer>();
+    private Slide currentSlideModel;
+    private transient Color textColor;
+    private transient int textSize = 30;
+    private transient Font font = new Font("Arial", Font.PLAIN, textSize);
     
-    public Application() {
+    public Presentation() {
         this.slides.add(new Slide(0));  //par défaut on a un slide
     }
     
@@ -63,15 +63,13 @@ public class Application implements Observable{
         return slideNumber;
     }
 
-    public CurrentSlideView getCurrentSlide() {
-        return currentSlide;
+    public Slide getCurrentSlideModel() {
+        return currentSlideModel;
     }
-    
 
-    public void setCurrentSlide(CurrentSlideView currentSlide) {
-        this.currentSlide = currentSlide;
+    public void setCurrentSlideModel(Slide currentSlideModel) {
+        this.currentSlideModel = currentSlideModel;
     }
-    
 
     @Override
     public void addObserver(Observer obs) {
@@ -121,8 +119,5 @@ public class Application implements Observable{
 
     public void setFont(Font font) {
         this.font = font;
-    }
-    
-    
-    
+    }    
 }

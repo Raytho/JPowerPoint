@@ -1,6 +1,6 @@
 package Controleur;
 
-import Modele.Application;
+import Modele.Presentation;
 import Vue.CurrentSlideView;
 import Vue.Resizable;
 import java.awt.Component;
@@ -15,8 +15,8 @@ import javax.swing.JTextPane;
 
 public class TextZoneListener implements MouseListener{
     Resizable zr;
-    Application app;
-    public TextZoneListener(Resizable zr, Application app) {
+    Presentation app;
+    public TextZoneListener(Resizable zr, Presentation app) {
         this.zr = zr;
         this.app = app;
     }

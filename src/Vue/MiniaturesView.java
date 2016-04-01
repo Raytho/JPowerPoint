@@ -1,6 +1,6 @@
 package Vue;
 import Modele.Slide;
-import Modele.Application;
+import Modele.Presentation;
 import Observe.Observer;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,12 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class MiniaturesView extends JPanel implements Observer{
-    private Application app;
+    private Presentation presentation;
     private ArrayList<MiniSlidePanel> miniSlides = new ArrayList<MiniSlidePanel>();
-    private int nbSlide = 1;
     
-    public MiniaturesView(Application app) {
-        this.app = app;
+    public MiniaturesView(Presentation presentation) {
+        this.presentation = presentation;
         this.setPreferredSize(new Dimension(220,300));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -38,7 +37,7 @@ public class MiniaturesView extends JPanel implements Observer{
         ActionListener buttonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                app.addSlide();
+                presentation.addSlide();
             }
         };
         add.addActionListener(buttonListener);
@@ -47,15 +46,15 @@ public class MiniaturesView extends JPanel implements Observer{
     
     
     private void MiniSlidesInit() {
-       for(Slide current : app.getSlides()) {
-           this.miniSlides.add(new MiniSlidePanel(current, app));
+       for(Slide current : presentation.getSlides()) {
+           this.miniSlides.add(new MiniSlidePanel(current, presentation));
        }     
     }
     
 
     @Override
-    public void update(Application app) {
-        this.app = app;
+    public void update(Presentation presentation) {
+        this.presentation = presentation;
         this.miniSlides.removeAll(miniSlides);    
         this.MiniSlidesInit();     
         this.removeAll();
@@ -64,17 +63,17 @@ public class MiniaturesView extends JPanel implements Observer{
            this.add(current);
         }
         this.invalidate();
-        JButton add = new JButton("Add");
+        JButton addButton = new JButton("Add");
         ActionListener buttonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                app.addSlide();
+                presentation.addSlide();
             }
         };
-        this.nbSlide = this.miniSlides.size();
-        add.addActionListener(buttonListener);
-        this.add(add);
-        System.out.println(app);
+        int nbSlide = this.miniSlides.size();
+        addButton.addActionListener(buttonListener);
+        this.add(addButton);
+        System.out.println(presentation);
         this.setPreferredSize(new Dimension(180,180*nbSlide));
         for(MiniSlidePanel current : this.miniSlides){
             if(current.getSlide().getHighlight() == true){
@@ -87,10 +86,4 @@ public class MiniaturesView extends JPanel implements Observer{
         this.revalidate();
         this.repaint();
     }
-
-    public int getNbSlide() {
-        return nbSlide;
-    }
-    
-    
 }
