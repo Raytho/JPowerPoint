@@ -43,7 +43,6 @@ public class CurrentSlideView extends JPanel implements Observer{
     public void update(Presentation presentation) {
         this.slide = this.presentation.getCurrentSlideModel();
         this.removeAll();
-        System.out.println("id = " + this.slide.getId());
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }

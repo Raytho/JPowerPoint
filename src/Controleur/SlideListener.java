@@ -17,10 +17,10 @@ import javax.swing.event.MouseInputAdapter;
 
 
 public class SlideListener extends MouseInputAdapter {
-    private Presentation app;
+    private Presentation presentation;
     
-    public SlideListener(Presentation app) {
-        this.app = app;
+    public SlideListener(Presentation presentation) {
+        this.presentation = presentation;
     }
     
     @Override
@@ -53,13 +53,13 @@ public class SlideListener extends MouseInputAdapter {
                                 currentSlide.getSlide().getItemsMiniSlide().add(zr.getText());
                             }
                             
-                            this.app.notifyObserver();
+                            this.presentation.notifyObserver();
                             zr.setSelected(false);
                         }
                         else {
                             currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
                             currentSlide.getSlide().getItemsCurrentSlide().remove(zr);
-                            this.app.notifyObserver();
+                            this.presentation.notifyObserver();
                         }
                         return;
                     }
@@ -67,7 +67,7 @@ public class SlideListener extends MouseInputAdapter {
             }
 
 
-            Resizable zr = new Resizable(5, 20, me.getX(), me.getY(), currentSlide, null, app);
+            Resizable zr = new Resizable(5, 20, me.getX(), me.getY(), currentSlide, null, presentation);
             zr.setBorder(BorderFactory.createTitledBorder(""));
             currentSlide.getSlide().addCurrentSlideComponent(zr);
 

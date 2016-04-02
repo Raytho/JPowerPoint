@@ -34,6 +34,7 @@ public class MiniaturesView extends JPanel implements Observer{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 presentation.addSlide();
+                System.out.println(presentation.getSlideById(0).getItemsMiniSlide().size());
             }
         };
         add.addActionListener(buttonListener);
@@ -64,12 +65,12 @@ public class MiniaturesView extends JPanel implements Observer{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 presentation.addSlide();
+                System.out.println(presentation.getSlideById(0).getItemsMiniSlide().size());
             }
         };
         int nbSlide = this.miniSlides.size();
         addButton.addActionListener(buttonListener);
         this.add(addButton);
-        System.out.println(presentation);
         this.setPreferredSize(new Dimension(180,180*nbSlide));
         for(MiniSlidePanel current : this.miniSlides){
             if(current.getSlide().getHighlight() == true){
@@ -82,4 +83,10 @@ public class MiniaturesView extends JPanel implements Observer{
         this.revalidate();
         this.repaint();
     }
+
+    public ArrayList<MiniSlidePanel> getMiniSlides() {
+        return miniSlides;
+    }
+    
+    
 }

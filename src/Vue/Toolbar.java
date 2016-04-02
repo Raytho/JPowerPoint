@@ -91,4 +91,8 @@ public class Toolbar extends JToolBar {
         this.add(sizeList);
         this.add(fontsList);
     } 
+
+    public void setPresentation(Presentation presentation) {
+        this.presentation = presentation;
+    }
 }

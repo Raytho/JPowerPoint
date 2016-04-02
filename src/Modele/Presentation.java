@@ -101,6 +101,10 @@ public class Presentation implements Observable, Serializable{
         return textColor;
     }
 
+    public void setListObserver(ArrayList<Observer> listObserver) {
+        this.listObserver = listObserver;
+    }
+
     public void setTextColor(Color textColor) {
         this.textColor = textColor;
     }

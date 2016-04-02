@@ -13,6 +13,7 @@ public class MainFrame extends JFrame{
     private Presentation presentation;
     private MiniaturesView miniaturesView;
     private CurrentSlideView currentSlideView;
+    private Toolbar toolbar;
 
     public MainFrame (Presentation presentation){
         super ("PowerPoint");
@@ -20,8 +21,7 @@ public class MainFrame extends JFrame{
         this.setLayout(new BorderLayout(5,5));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        Toolbar toolbar = new Toolbar(presentation, this);
-        this.add(toolbar, BorderLayout.NORTH);
+        this.newToolbar();
         
         Menu menu = new Menu(this);
         this.setJMenuBar(menu);
@@ -33,8 +33,9 @@ public class MainFrame extends JFrame{
         this.setSize(1200, 700);
         this.setVisible(true);
     }
+            
     
-    private void newMiniaturesView() {
+    public void newMiniaturesView() {
         MiniaturesView miniaturesView = new MiniaturesView(this.presentation);
         this.presentation.addObserver(miniaturesView);
         JPanel leftPanel = new JPanel();
@@ -46,7 +47,7 @@ public class MainFrame extends JFrame{
         this.add(leftPanel, BorderLayout.WEST);
     }
     
-    private void newCurrentSlideView() {
+    public void newCurrentSlideView() {
         CurrentSlideView currentSlideView = new CurrentSlideView(this.presentation.getSlides().get(0), this.presentation);
         this.presentation.setCurrentSlideModel(currentSlideView.getSlide());
         this.presentation.addObserver(currentSlideView);
@@ -55,6 +56,12 @@ public class MainFrame extends JFrame{
         rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         this.currentSlideView = currentSlideView;
         this.add(rightPanel, BorderLayout.CENTER);
+    }
+    
+    public void newToolbar() {
+        Toolbar toolbar = new Toolbar(this.presentation, this);
+        this.toolbar = toolbar;
+        this.add(toolbar, BorderLayout.NORTH);
     }
 
     public Presentation getPresentation() {
@@ -67,5 +74,21 @@ public class MainFrame extends JFrame{
 
     public CurrentSlideView getCurrentSlideView() {
         return currentSlideView;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public void setPresentation(Presentation presentation) {
+        this.presentation = presentation;
+    }
+
+    public void setMiniaturesView(MiniaturesView miniaturesView) {
+        this.miniaturesView = miniaturesView;
+    }
+
+    public void setCurrentSlideView(CurrentSlideView currentSlideView) {
+        this.currentSlideView = currentSlideView;
     }
 }

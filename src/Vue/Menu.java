@@ -3,10 +3,13 @@
 package Vue;
 
 import Controleur.BinaryFileTools;
+import Modele.Presentation;
+import Observe.Observer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -26,18 +29,44 @@ public class Menu extends JMenuBar{
         fileMenu.setMnemonic(KeyEvent.VK_F);
         JMenuItem newF = new JMenuItem("New", KeyEvent.VK_N);
         fileMenu.add(newF);
+        
         JMenuItem openF = new JMenuItem("Open", KeyEvent.VK_O);
+        ActionListener OpenListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                JFileChooser loadFile = new JFileChooser();
+                int action = loadFile.showOpenDialog(null);
+                if(action == loadFile.APPROVE_OPTION){
+                    File file = loadFile.getSelectedFile();
+                    Presentation presentationLoad = BinaryFileTools.LoadPresentation(file.toString());
+                    //System.out.println(presentationLoad.getSlideById(0).getHighlight());
+                    presentationLoad.setListObserver(new ArrayList<Observer>());
+                    mainFrame.getContentPane().removeAll();
+                    mainFrame.setPresentation(presentationLoad);
+                    
+                    mainFrame.newToolbar();
+                    mainFrame.newMiniaturesView();
+                    
+                    mainFrame.newCurrentSlideView();
+                    mainFrame.invalidate();
+                    mainFrame.revalidate();
+                    mainFrame.repaint();
+                    presentationLoad.notifyObserver();
+                    System.out.println(mainFrame.getPresentation().getSlideById(0).getItemsMiniSlide().size());
+                }
+            }
+        };
+        openF.addActionListener(OpenListener);
         fileMenu.add(openF);
         
         JMenuItem saveF = new JMenuItem("Save", KeyEvent.VK_S);
         ActionListener SaveListener = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    JFileChooser savefile = new JFileChooser();
-                    savefile.setSelectedFile(new File("newPresentation.ser"));
-                    savefile.showSaveDialog(savefile);
-                    BinaryFileTools.SavePresentation(savefile.getSelectedFile().toString(), mainFrame.getPresentation());
-                    //System.out.println(savefile.getSelectedFile());
+                    JFileChooser saveFile = new JFileChooser();
+                    saveFile.setSelectedFile(new File("newPresentation.ser"));
+                    saveFile.showSaveDialog(saveFile);
+                    BinaryFileTools.SavePresentation(saveFile.getSelectedFile().toString(), mainFrame.getPresentation());
                 }
         };       
         saveF.addActionListener(SaveListener);

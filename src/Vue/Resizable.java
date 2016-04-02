@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,7 +17,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.StyleConstants;
 
 
-public class Resizable extends JPanel{
+public class Resizable extends JPanel implements Serializable{
     private JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
     private CurrentSlideView currentSlideView;
     private JTextPane textZone;
@@ -24,23 +25,20 @@ public class Resizable extends JPanel{
     private JLabel text = null;
     private boolean selected = true;
     int fontSize;
-    Presentation app;
+    Presentation presentation;
     
-    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Presentation app){
+    public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Presentation presentation){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
         this.setBackground(Color.white);
         this.currentSlideView = currentSlide;
         this.setLayout(null);
-        this.app = app;
+        this.presentation = presentation;
         
         if(image==null){
             textZone = new JTextPane();
-            /*fontSize = StyleConstants.getFontSize(textZone.getInputAttributes());
-            StyleConstants.setFontSize(textZone.getInputAttributes(),app.getTextSize());*/
-            System.out.println("taile : " + app.getTextSize());
-            textZone.setForeground(this.app.getTextColor());
-            textZone.setFont(this.app.getFont());
+            textZone.setForeground(this.presentation.getTextColor());
+            textZone.setFont(this.presentation.getFont());
             textZone.setBounds(1,1, size.width-2, size.height-2);
             this.add(textZone);
             this.image = null;
