@@ -14,6 +14,7 @@ public class MainFrame extends JFrame{
     private MiniaturesView miniaturesView;
     private CurrentSlideView currentSlideView;
     private Toolbar toolbar;
+    private StatusPanel statusPanel = new StatusPanel(this);
 
     public MainFrame (Presentation presentation){
         super ("PowerPoint");
@@ -28,6 +29,7 @@ public class MainFrame extends JFrame{
         
         this.newMiniaturesView();
         this.newCurrentSlideView();
+        this.add(this.statusPanel, BorderLayout.SOUTH);
           
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 700);
@@ -48,7 +50,7 @@ public class MainFrame extends JFrame{
     }
     
     public void newCurrentSlideView() {
-        CurrentSlideView currentSlideView = new CurrentSlideView(this.presentation.getSlides().get(0), this.presentation);
+        CurrentSlideView currentSlideView = new CurrentSlideView(this.presentation.getSlides().get(0), this.presentation, this);
         this.presentation.setCurrentSlideModel(currentSlideView.getSlide());
         this.presentation.addObserver(currentSlideView);
         JPanel rightPanel = new JPanel();
@@ -78,6 +80,10 @@ public class MainFrame extends JFrame{
 
     public Toolbar getToolbar() {
         return toolbar;
+    }
+
+    public StatusPanel getStatusPanel() {
+        return statusPanel;
     }
 
     public void setPresentation(Presentation presentation) {

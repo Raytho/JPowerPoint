@@ -1,6 +1,7 @@
 package Vue;
 import Modele.Slide;
 import Modele.Presentation;
+import Modele.SlideItem;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

@@ -30,7 +30,9 @@ public class Resizable extends JPanel implements Serializable{
     public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Presentation presentation){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
-        this.setBackground(Color.white);
+        //this.setBackground(Color.white);
+        //this.setBackground(new Color(0,0,0,0));
+        this.setOpaque(false);
         this.currentSlideView = currentSlide;
         this.setLayout(null);
         this.presentation = presentation;
@@ -40,6 +42,7 @@ public class Resizable extends JPanel implements Serializable{
             textZone.setForeground(this.presentation.getTextColor());
             textZone.setFont(this.presentation.getFont());
             textZone.setBounds(1,1, size.width-2, size.height-2);
+            textZone.setOpaque(false);
             this.add(textZone);
             this.image = null;
             TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getPresentation());

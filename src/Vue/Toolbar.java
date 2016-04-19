@@ -1,8 +1,8 @@
-
 package Vue;
 
 import Controleur.CurrentSlideListener;
 import Modele.Presentation;
+import Tools.ToolOval;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,6 +17,8 @@ public class Toolbar extends JToolBar {
     private MouseListener slideListener = null;
     private Presentation presentation;
     private MainFrame mainFrame;
+    private Color mainColor = Color.BLACK;
+    private Color borderColor = Color.BLACK;
     
     
     public Toolbar(Presentation presentation, MainFrame mainFrame){
@@ -50,20 +52,39 @@ public class Toolbar extends JToolBar {
         this.add(textZoneButton);
 
 
-        JButton textColorButton = new JButton("");
-        textColorButton.setBackground(Color.black);
-        ActionListener colorButtonListener = new ActionListener() {
+        JButton mainColorButton = new JButton();
+        mainColorButton.setBackground(Color.black);
+        ActionListener mainColorButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               Color newColor = JColorChooser.showDialog(null, "Change background color",textColorButton.getBackground());
+               Color newColor = JColorChooser.showDialog(null, "Change background color",mainColorButton.getBackground());
                if(newColor != null){
-                   textColorButton.setBackground(newColor);
+                   mainColorButton.setBackground(newColor);
                    presentation.setTextColor(newColor);
+                   mainColor = newColor;
                }
             }        
         };
-        textColorButton.addActionListener(colorButtonListener);
-        this.add(textColorButton);
+        mainColorButton.addActionListener(mainColorButtonListener);
+        this.add(mainColorButton);
+        
+        JButton borderColorButton = new JButton();
+        borderColorButton.setBackground(Color.black);
+        ActionListener borderColorButtonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               Color newColor = JColorChooser.showDialog(null, "Change background color",borderColorButton.getBackground());
+               if(newColor != null){
+                   borderColorButton.setBackground(newColor);
+                   borderColor = newColor;
+               }
+            }        
+        };
+        borderColorButton.addActionListener(borderColorButtonListener);
+        this.add(borderColorButton);
+        
+        ToolOval toolOval = new ToolOval(this.mainFrame);
+        this.add(toolOval);
         
         String[] fonts = { "Arial", "Calibri", "Vladimir Script", "Times New Roman", "Sylfaen"};
         JComboBox fontsList = new JComboBox(fonts);
@@ -94,5 +115,13 @@ public class Toolbar extends JToolBar {
 
     public void setPresentation(Presentation presentation) {
         this.presentation = presentation;
+    }
+
+    public Color getMainColor() {
+        return mainColor;
+    }
+
+    public Color getBorderColor() {
+        return borderColor;
     }
 }

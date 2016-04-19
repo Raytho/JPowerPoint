@@ -11,6 +11,7 @@ public class Slide implements Comparable, Serializable{
     private int id;
     private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); //Différents trucs bidules dans le slide
     private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
+    private ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
     private boolean isHighlighted = false;
     
     public Slide(int id) {
@@ -42,8 +43,10 @@ public class Slide implements Comparable, Serializable{
     public ArrayList<Component> getItemsCurrentSlide() {
         return itemsCurrentSlide;
     }
-    
-    
+
+    public ArrayList<MyShape> getShapesTab() {
+        return shapesTab;
+    }
 
     public int getId() {
         return id;
