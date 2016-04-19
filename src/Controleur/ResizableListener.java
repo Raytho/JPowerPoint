@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controleur;
 
 import Vue.Resizable;
@@ -11,13 +6,10 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 import javax.swing.BorderFactory;
 
-/**
- *
- * @author ISEN
- */
-public class ResizableListener implements MouseListener, MouseMotionListener{
+public class ResizableListener implements MouseListener, MouseMotionListener, Serializable{
     int x, y, xtr, ytr, xtl, ytl, xbr, ybr, xbl, ybl, xmouse, ymouse; 
     
     @Override

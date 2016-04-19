@@ -8,12 +8,13 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import static java.awt.event.MouseEvent.BUTTON1;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 
-public class TextZoneListener implements MouseListener{
+public class TextZoneListener implements MouseListener, Serializable{
     Resizable zr;
     Presentation app;
     public TextZoneListener(Resizable zr, Presentation app) {
@@ -63,6 +64,7 @@ public class TextZoneListener implements MouseListener{
                 }
             }
         }
+        System.out.println("yo");
     }
 
     @Override

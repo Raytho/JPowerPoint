@@ -1,7 +1,7 @@
 
 package Vue;
 
-import Controleur.SlideListener;
+import Controleur.CurrentSlideListener;
 import Modele.Presentation;
 import java.awt.Color;
 import java.awt.Font;
@@ -41,7 +41,7 @@ public class Toolbar extends JToolBar {
         ActionListener textZoneButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               slideListener = new SlideListener(presentation);
+               slideListener = new CurrentSlideListener(presentation);
                mainFrame.getCurrentSlideView().addMouseListener(slideListener);
                System.out.println(mainFrame.getCurrentSlideView());
             }        

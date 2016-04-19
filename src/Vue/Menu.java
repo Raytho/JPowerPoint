@@ -5,6 +5,7 @@ package Vue;
 import Controleur.BinaryFileTools;
 import Modele.Presentation;
 import Observe.Observer;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -39,7 +40,6 @@ public class Menu extends JMenuBar{
                 if(action == loadFile.APPROVE_OPTION){
                     File file = loadFile.getSelectedFile();
                     Presentation presentationLoad = BinaryFileTools.LoadPresentation(file.toString());
-                    //System.out.println(presentationLoad.getSlideById(0).getHighlight());
                     presentationLoad.setListObserver(new ArrayList<Observer>());
                     mainFrame.getContentPane().removeAll();
                     mainFrame.setPresentation(presentationLoad);
@@ -52,7 +52,6 @@ public class Menu extends JMenuBar{
                     mainFrame.revalidate();
                     mainFrame.repaint();
                     presentationLoad.notifyObserver();
-                    System.out.println(mainFrame.getPresentation().getSlideById(0).getItemsMiniSlide().size());
                 }
             }
         };

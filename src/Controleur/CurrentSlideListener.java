@@ -10,16 +10,17 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import static java.awt.event.MouseEvent.BUTTON1;
+import java.io.Serializable;
 import javax.swing.JTextArea;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.event.MouseInputAdapter;
 
 
-public class SlideListener extends MouseInputAdapter {
+public class CurrentSlideListener extends MouseInputAdapter {
     private Presentation presentation;
     
-    public SlideListener(Presentation presentation) {
+    public CurrentSlideListener(Presentation presentation) {
         this.presentation = presentation;
     }
     
