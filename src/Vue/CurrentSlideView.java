@@ -132,11 +132,11 @@ public class CurrentSlideView extends JPanel implements Observer{
     @Override
     public void update(Presentation presentation) {
         this.slide = this.presentation.getCurrentSlideModel();
-        this.removeAll();
         for(Component current : this.slide.getItemsCurrentSlide()) { 
+            this.remove(current);
             this.add(current);
         }
-        this.validate();
+        this.revalidate();
         this.repaint();
     }
 }

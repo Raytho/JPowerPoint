@@ -30,8 +30,6 @@ public class Resizable extends JPanel implements Serializable{
     public Resizable(int i, int i1, int x, int y, CurrentSlideView currentSlide, Image image, Presentation presentation){
         Dimension size = new Dimension(200,100);
         this.setBounds(x,y, size.width, size.height);
-        //this.setBackground(Color.white);
-        //this.setBackground(new Color(0,0,0,0));
         this.setOpaque(false);
         this.currentSlideView = currentSlide;
         this.setLayout(null);

@@ -1,9 +1,13 @@
 package Vue;
 
-import Controleur.CurrentSlideListener;
+import Controleur.SelectCurrentPanelListener;
+import Controleur.TextToolListener;
 import Modele.Presentation;
 import Tools.ToolOval;
+import Tools.ToolRectangle;
+import Tools.ToolSelect;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +18,6 @@ import javax.swing.JComboBox;
 import javax.swing.JToolBar;
 
 public class Toolbar extends JToolBar {
-    private MouseListener slideListener = null;
     private Presentation presentation;
     private MainFrame mainFrame;
     private Color mainColor = Color.BLACK;
@@ -26,26 +29,14 @@ public class Toolbar extends JToolBar {
         this.presentation = presentation;
         this.mainFrame = mainFrame;
 
-        JButton selectButton = new JButton("select");
-        ActionListener selectButtonListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-              if(slideListener != null) {
-                  mainFrame.getCurrentSlideView().removeMouseListener(slideListener);
-                  slideListener = null;
-              }
-            }        
-        };
-        selectButton.addActionListener(selectButtonListener);
-        this.add(selectButton);
+        this.add(new ToolSelect(this.mainFrame, this.presentation));
 
         JButton textZoneButton = new JButton("text");
         ActionListener textZoneButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               slideListener = new CurrentSlideListener(presentation);
-               mainFrame.getCurrentSlideView().addMouseListener(slideListener);
-               System.out.println(mainFrame.getCurrentSlideView());
+               mainFrame.getCurrentSlideView().removeListeners();
+               mainFrame.getCurrentSlideView().addMouseListener(new TextToolListener(presentation));
             }        
         };
         textZoneButton.addActionListener(textZoneButtonListener);
@@ -62,6 +53,15 @@ public class Toolbar extends JToolBar {
                    mainColorButton.setBackground(newColor);
                    presentation.setTextColor(newColor);
                    mainColor = newColor;
+                   for(Component current : presentation.getCurrentSlideModel().getItemsCurrentSlide()) {
+                       if(current instanceof Resizable) {
+                           Resizable resizable = (Resizable)current;
+                           if(resizable.isSelected()) {
+                                resizable.getTextZone().setForeground(newColor);
+                                presentation.notifyObserver();
+                           }
+                       }
+                   }
                }
             }        
         };
@@ -85,6 +85,9 @@ public class Toolbar extends JToolBar {
         
         ToolOval toolOval = new ToolOval(this.mainFrame);
         this.add(toolOval);
+        
+        ToolRectangle toolRectangle = new ToolRectangle(this.mainFrame);
+        this.add(toolRectangle);
         
         String[] fonts = { "Arial", "Calibri", "Vladimir Script", "Times New Roman", "Sylfaen"};
         JComboBox fontsList = new JComboBox(fonts);

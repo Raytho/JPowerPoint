@@ -15,12 +15,12 @@ public class Presentation implements Observable, Serializable{
     private transient Font font = new Font("Arial", Font.PLAIN, textSize);
     
     public Presentation() {
-        this.slides.add(new Slide(0));  //par défaut on a un slide
+        this.slides.add(new Slide(0, this));  //par défaut on a un slide
     }
     
     public void addSlide() {
         this.slideNumber++;
-        this.slides.add(new Slide(this.slideNumber-1));
+        this.slides.add(new Slide(this.slideNumber-1, this));
         this.notifyObserver();
     }
     

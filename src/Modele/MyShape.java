@@ -53,7 +53,7 @@ public class MyShape extends JPanel {    //une shape de notre JPaint (il s'agit 
         this.selected = isSelected;
     }
 
-    public Slide getModele() {
+    public Slide getSlide() {
         return slide;
     }
 
