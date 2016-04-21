@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 public class Slide implements Comparable, Serializable{
     private Presentation presentation;
     private int id;
-    private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); 
-    private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
-    private ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
+    private ArrayList<Item> itemsMiniSlide = new ArrayList<Item>(); 
+    private ArrayList<Item> itemsCurrentSlide = new ArrayList<Item>();
+    //private ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
     private boolean isHighlighted = false;
     
     public Slide(int id, Presentation presentation) {
@@ -34,24 +34,35 @@ public class Slide implements Comparable, Serializable{
         this.itemsCurrentSlide.add(nCompCopy);
     }*/
     
-    public void addCurrentSlideComponent (Component comp) {
-        this.itemsCurrentSlide.add(comp);
+    public void addCurrentSlideComponent (Item item) {
+        this.itemsCurrentSlide.add(item);
     }
 
-    public ArrayList<Component> getItemsMiniSlide() {
+    public ArrayList<Item> getItemsMiniSlide() {
         return itemsMiniSlide;
     }
     
-    public ArrayList<Component> getItemsCurrentSlide() {
+    public ArrayList<Item> getItemsCurrentSlide() {
         return itemsCurrentSlide;
     }
 
-    public ArrayList<MyShape> getShapesTab() {
+    /*public ArrayList<MyShape> getShapesTab() {
         return shapesTab;
-    }
+    }*/
 
     public int getId() {
         return id;
+    }
+    
+    public ArrayList<MyShape> getShapesTab() {
+        ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
+        for(Item current : this.itemsCurrentSlide) {
+            if(current instanceof MyShape) {
+                MyShape myShape = (MyShape)current;
+                shapesTab.add(myShape);
+            }
+        }
+        return shapesTab;
     }
 
     public void setId(int id) {

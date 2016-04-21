@@ -7,14 +7,14 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 import javax.swing.JPanel;
 
-public class MyShape extends JPanel implements Serializable {    //une shape de notre JPaint (il s'agit d'un JPanel)
+public class MyShape extends Item implements Serializable {    //une shape de notre JPaint (il s'agit d'un JPanel)
     private Slide slide;
     private Shape shapeBackground;      //correspond au contour de la shape 
     private Shape shapeForeground;      //l'interieur de la shape
     private Color foregroundColor;      //couleur de l'interieur
     private Color backgroundColor;      //couleur du contour
     private String type;                //pour savoir de quel type est notre shape (ellipse, rectangle, line,...)
-    private boolean selected = false;   //savoir si notre shape est sélectionnée
+    //private boolean selected = false;   //savoir si notre shape est sélectionnée
     
     private int xOrigin;    //position en x du JPanel associé à notre shape
     private int yOrigin;    //position en y du JPanel associé à notre shape
@@ -67,14 +67,6 @@ public class MyShape extends JPanel implements Serializable {    //une shape de 
     public Shape getShapeForeground() {
         return shapeForeground;
     } 
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean isSelected) {
-        this.selected = isSelected;
-    }
 
     public Slide getSlide() {
         return slide;

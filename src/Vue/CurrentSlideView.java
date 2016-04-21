@@ -2,7 +2,7 @@ package Vue;
 import Modele.MyShape;
 import Modele.Slide;
 import Modele.Presentation;
-import Modele.SlideItem;
+import Modele.Item;
 import Observe.Observer;
 import java.awt.Color;
 import java.awt.Component;
@@ -10,10 +10,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 public class CurrentSlideView extends JPanel implements Observer{
     private Slide slide;
@@ -31,8 +36,19 @@ public class CurrentSlideView extends JPanel implements Observer{
         for(Component current : this.slide.getItemsCurrentSlide()) { 
             this.add(current);
         }
-        this.validate();
-        this.repaint();     
+        this.revalidate();
+        this.repaint();
+        
+        //CREATION DES RACOURCIES CLAVIERS
+        
+        //DELETE
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "delete");
+        this.getActionMap().put("delete", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {   //quand on clique sur suppr
+                
+            }    
+        });
     }
 
     public void setSlide(Slide slide) {
@@ -51,15 +67,17 @@ public class CurrentSlideView extends JPanel implements Observer{
         for(MouseListener current : this.getMouseListeners()) { //supprime les mouseListeners du JPanel principal
             this.removeMouseListener(current);
         }
-        for(MyShape current : this.slide.getShapesTab()) {    //supprime les MouseListeners des JPanel associés aux shapes
-                JPanel panel = (JPanel)current;
-                for(MouseListener ml : panel.getMouseListeners()) {
-                    panel.removeMouseListener(ml);
+        for(Item current : this.slide.getItemsCurrentSlide()) {    //supprime les MouseListeners des JPanel associés aux shapes
+                if(current instanceof MyShape) {
+                    JPanel panel = (JPanel)current;
+                    for(MouseListener ml : panel.getMouseListeners()) {
+                        panel.removeMouseListener(ml);
+                    }
+                    for(MouseMotionListener mml : panel.getMouseMotionListeners()) {    //supprime les MouseMotionListeners des JPanel associés aux shapes
+                        panel.removeMouseMotionListener(mml);
+                    }
+                    current.setSelected(false);
                 }
-                for(MouseMotionListener mml : panel.getMouseMotionListeners()) {    //supprime les MouseMotionListeners des JPanel associés aux shapes
-                    panel.removeMouseMotionListener(mml);
-                }
-                current.setSelected(false);
             }
     }
     
@@ -71,32 +89,15 @@ public class CurrentSlideView extends JPanel implements Observer{
         int i = this.slide.getShapesTab().size()-1;
         while(i!=-1) {  //on ajoute les JPanel dans le désordre car le 1er panel ajouté est celui pris en compte en cas de collision
             MyShape current = this.slide.getShapesTab().get(i);
-            if(!current.getType().equals("Line_D") || !current.getType().equals("Line_M")) {    //on ajoute les lignes après les autres formes car les lignes sont petites (moins prioritaires)
-                if(current.isSelected()) {  //si une forme est sélectionnée, on vérifie si elle a bougée
-                    current.setLocation(new Point(current.getxOrigin(), current.getyOrigin()));
-                    current.setBackground(new Color(0,0,0,0));
-                }
-                else {
-                    this.remove(current);   //si elle n'est pas séléctionnée, on la supprime et la recrée
-                    current.setBounds(current.getxOrigin(), current.getyOrigin(), (int)current.getShapeForeground().getBounds2D().getWidth(), (int)current.getShapeForeground().getBounds2D().getHeight());
-                    this.add(current);
-                }
+            
+            if(current.isSelected()) {  //si une forme est sélectionnée, on vérifie si elle a bougée
+                current.setLocation(new Point(current.getxOrigin(), current.getyOrigin()));
+                current.setBackground(new Color(0,0,0,0));
             }
-            i--;
-        }
-        
-        i=this.slide.getShapesTab().size()-1;
-        while(i!=-1) {  //on ajoute ici les panels de lignes (non prioritaires)
-            MyShape current = this.slide.getShapesTab().get(i);
-            if(current.getType().equals("Line_D") || current.getType().equals("Line_M")) {
-                if(current.isSelected()) {
-                    current.setLocation(new Point(current.getxOrigin(), current.getyOrigin()));
-                    current.setBackground(new Color(0,0,0,0));
-                }
-                else {
-                    current.setBounds(current.getxOrigin(), current.getyOrigin(), (int)current.getShapeForeground().getBounds2D().getWidth(), (int)current.getShapeForeground().getBounds2D().getHeight());
-                    this.add(current);
-                }
+            else {
+                this.remove(current);   //si elle n'est pas séléctionnée, on la supprime et la recrée
+                current.setBounds(current.getxOrigin(), current.getyOrigin(), (int)current.getShapeForeground().getBounds2D().getWidth(), (int)current.getShapeForeground().getBounds2D().getHeight());
+                this.add(current);
             }
             i--;
         }
@@ -132,18 +133,21 @@ public class CurrentSlideView extends JPanel implements Observer{
     @Override
     public void update(Presentation presentation) {
         this.slide = this.presentation.getCurrentSlideModel();
-        //this.removeAll();
-        for(int i=0;i<=this.getComponents().length-1;i++) { 
+        this.removeAll();
+        /*for(int i=0;i<=this.getComponents().length-1;i++) { 
             if(this.getComponents()[i] instanceof MyShape) {
-                  
+                this.remove(this.getComponents()[i]);
             }
             else {
                 this.remove(this.getComponents()[i]); 
             }
-        }
-        for(Component current : this.slide.getItemsCurrentSlide()) { 
-            this.add(current);
+        }*/
+        for(Item current : this.slide.getItemsCurrentSlide()) { 
+            if(current instanceof MyShape && current.isSelected()) {
+                this.add(current);
+            }
             if(current instanceof Resizable) {
+                this.add(current);
                 Resizable zr = (Resizable)current;
                 this.add(zr.getDragTopLeft());
                 this.add(zr.getDragTopRight());

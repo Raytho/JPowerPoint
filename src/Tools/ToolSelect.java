@@ -3,7 +3,9 @@ package Tools;
 import Controleur.SelectCurrentPanelListener;
 import Modele.MyShape;
 import Modele.Presentation;
+import Modele.Slide;
 import Vue.MainFrame;
+import Vue.MiniSlidePanel;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Shape;
@@ -42,11 +44,13 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
         this.mainFrame.getStatusPanel().setStatus(status);
         this.mainFrame.getCurrentSlideView().removeListeners();
         this.mainFrame.getCurrentSlideView().getPresentation().notifyObserver();
-        for(MyShape current : this.mainFrame.getCurrentSlideView().getSlide().getShapesTab()) {
+        for(Slide slide : this.presentation.getSlides()) {
+            for(MyShape current : slide.getShapesTab()) {
             JPanel panel = (JPanel)current;
             panel.addMouseListener(this);
             panel.addMouseMotionListener(this);
-        }  
+            } 
+        } 
         this.mainFrame.getCurrentSlideView().addMouseListener(new SelectCurrentPanelListener(presentation));
     }
     
@@ -62,17 +66,27 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
             current.setSelected(false);
         }
         myShape.setSelected(true);
-        myShape.getSlide().getShapesTab().remove(myShape);
-        myShape.getSlide().getShapesTab().add(myShape);
-        myShape.getSlide().getPresentation().notifyObserver();
+        myShape.getSlide().getItemsCurrentSlide().remove(myShape);
+        myShape.getSlide().getItemsCurrentSlide().add(myShape);
+        this.mainFrame.getCurrentSlideView().repaint();
+        this.mainFrame.getCurrentSlideView().revalidate();
+        for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
+            current.repaint();
+            current.revalidate();
+        }
         this.xFirstClick = me.getX();
         this.yFirstClick = me.getY();
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        this.mainFrame.getPresentation().notifyObserver();
-        this.mainFrame.getPresentation().notifyObserver();
+        MyShape myShape = (MyShape)me.getSource();
+        this.mainFrame.getCurrentSlideView().repaint();
+        this.mainFrame.getCurrentSlideView().revalidate();
+        for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
+            current.repaint();
+            current.revalidate();
+        }
     }
 
     @Override
@@ -82,8 +96,14 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
 
     @Override
     public void mouseExited(MouseEvent me) {
-        this.mainFrame.getPresentation().notifyObserver();
-        this.mainFrame.getPresentation().notifyObserver();
+        //this.mainFrame.getPresentation().notifyObserver();
+        //this.mainFrame.getPresentation().notifyObserver();
+        this.mainFrame.getCurrentSlideView().repaint();
+        this.mainFrame.getCurrentSlideView().revalidate();
+        for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
+            current.repaint();
+            current.revalidate();
+        }
     }
 
     @Override
@@ -104,22 +124,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
             shapeBackground = new Rectangle2D.Float(x,y,(int)myShape.getShapeBackground().getBounds2D().getWidth(),(int)myShape.getShapeBackground().getBounds2D().getHeight());
             shapeForeground = new Rectangle2D.Float(x+4,y+4,(int)myShape.getShapeBackground().getBounds2D().getWidth()-8,(int)myShape.getShapeBackground().getBounds2D().getHeight()-8);
         }
-        else if(myShape.getType().equalsIgnoreCase("Line_D") || myShape.getType().equalsIgnoreCase("Line_M")){
-            Line2D temp = (Line2D) myShape.getShapeForeground();
-            shapeBackground = null;
-            Double diffx =Math.abs(temp.getX1()-temp.getX2())/2;
-            Double diffy =Math.abs(temp.getY1()-temp.getY2())/2;
-            Double x2=x+diffx;
-            Double y2=y+diffy;
-            //descendant
-            if(myShape.getType().equalsIgnoreCase("Line_M")){
-                shapeForeground = new Line2D.Double(x2-diffx,y2+diffy,x2+diffx,y2-diffy);
-            }
-            //montant
-            else{
-                shapeForeground = new Line2D.Double(x2-diffx,y2-diffy,x2+diffx,y2+diffy);
-            }
-        }
         else {
             shapeBackground = null;
             shapeForeground = null;
@@ -127,10 +131,22 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
         myShape.setShapeBackground(shapeBackground);
         myShape.setShapeForeground(shapeForeground);
         myShape.setSelected(false);
-        myShape.getSlide().getPresentation().notifyObserver();
+        //myShape.getSlide().getPresentation().notifyObserver();
+        this.mainFrame.getCurrentSlideView().repaint();
+        this.mainFrame.getCurrentSlideView().revalidate();
+        for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
+            current.repaint();
+            current.revalidate();
+        }
         myShape.setSelected(true);
-        myShape.getSlide().getPresentation().notifyObserver();
-        myShape.getSlide().getPresentation().notifyObserver();
+        //myShape.getSlide().getPresentation().notifyObserver();
+        //myShape.getSlide().getPresentation().notifyObserver();
+        this.mainFrame.getCurrentSlideView().repaint();
+        this.mainFrame.getCurrentSlideView().revalidate();
+        for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
+            current.repaint();
+            current.revalidate();
+        }
     }
 
     @Override

@@ -83,7 +83,7 @@ public class ToolOval extends JButton implements ActionListener, MouseListener{
        Color backgroundColor = currentSlideView.getMainFrame().getToolbar().getBorderColor();
        Color foregroundColor = currentSlideView.getMainFrame().getToolbar().getMainColor();
        MyShape ellipse = new MyShape(currentSlideView.getSlide(), shapeForeground, shapeBackground, foregroundColor, backgroundColor, new String("Ellipse"));
-       currentSlideView.getSlide().getShapesTab().add(ellipse);
+       currentSlideView.getSlide().getItemsCurrentSlide().add(ellipse);
        currentSlideView.getPresentation().notifyObserver();
     }
 

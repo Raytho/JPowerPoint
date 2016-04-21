@@ -2,7 +2,7 @@ package Vue;
 import Modele.MyShape;
 import Modele.Slide;
 import Modele.Presentation;
-import Modele.SlideItem;
+import Modele.Item;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

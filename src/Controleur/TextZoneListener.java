@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modele.Label;
 import Modele.Presentation;
 import Vue.CurrentSlideView;
 import Vue.Resizable;
@@ -46,10 +47,11 @@ public class TextZoneListener implements MouseListener, Serializable{
                             zr2.setSelected(false);
                         } 
                         Font font = zr2.getTextZone().getFont();
-                        JLabel labelOnMiniSlide = new JLabel(zr2.getTextZone().getText());
-                        labelOnMiniSlide.setSize(zr2.getSize().height*10/45, zr2.getSize().width*10/45);
+                        Label labelOnMiniSlide = new Label(zr2.getTextZone().getText());
+                        labelOnMiniSlide.getMyLabel().setSize(zr2.getSize().height*10/45, zr2.getSize().width*10/45);
+                        labelOnMiniSlide.setSize(zr2.getSize().height, zr2.getSize().width*10/45);
                         labelOnMiniSlide.setLocation(zr2.getX()*10/45, zr2.getY()*10/45);
-                        labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
+                        labelOnMiniSlide.getMyLabel().setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
                         if(zr2.getText() == null) {
                             currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
                             zr2.setText(labelOnMiniSlide);

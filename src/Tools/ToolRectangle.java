@@ -77,7 +77,7 @@ public class ToolRectangle extends JButton implements ActionListener, MouseListe
        Color backgroundColor = currentSlideView.getMainFrame().getToolbar().getBorderColor();
        Color foregroundColor = currentSlideView.getMainFrame().getToolbar().getMainColor();
        MyShape rectangle = new MyShape(currentSlideView.getSlide(), shapeForeground, shapeBackground, foregroundColor, backgroundColor, new String("Rectangle"));
-       currentSlideView.getSlide().getShapesTab().add(rectangle);
+       currentSlideView.getSlide().getItemsCurrentSlide().add(rectangle);
        currentSlideView.getPresentation().notifyObserver();
     }
 

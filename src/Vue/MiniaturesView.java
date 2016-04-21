@@ -85,8 +85,8 @@ public class MiniaturesView extends JPanel implements Observer{
                 current.setBorder(BorderFactory.createLineBorder(Color.black));
             }
         }
-        this.revalidate();
         this.repaint();
+        this.revalidate();
     }
 
     public ArrayList<MiniSlidePanel> getMiniSlides() {

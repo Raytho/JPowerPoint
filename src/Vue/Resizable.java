@@ -4,6 +4,8 @@ import Controleur.TextZoneListener;
 import Controleur.ResizableListener;
 import Controleur.DragListener;
 import Modele.Presentation;
+import Modele.Item;
+import Modele.Label;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -17,13 +19,12 @@ import javax.swing.JTextPane;
 import javax.swing.text.StyleConstants;
 
 
-public class Resizable extends JPanel implements Serializable{
+public class Resizable extends Item implements Serializable{
     private JButton dragTopLeft, dragTopRight, dragBotLeft, dragBotRight;
     private CurrentSlideView currentSlideView;
     private JTextPane textZone;
     private Image image;
-    private JLabel text = null;
-    private boolean selected = true;
+    private Label text = null;
     int fontSize;
     Presentation presentation;
     
@@ -34,6 +35,7 @@ public class Resizable extends JPanel implements Serializable{
         this.currentSlideView = currentSlide;
         this.setLayout(null);
         this.presentation = presentation;
+        this.setSelected(true);
         
         if(image==null){
             textZone = new JTextPane();
@@ -118,19 +120,11 @@ public class Resizable extends JPanel implements Serializable{
         return image;
     }
 
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    } 
-
-    public JLabel getText() {
+    public Label getText() {
         return text;
     }
 
-    public void setText(JLabel text) {
+    public void setText(Label text) {
         this.text = text;
     }
 }

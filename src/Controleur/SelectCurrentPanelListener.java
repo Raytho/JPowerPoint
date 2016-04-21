@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modele.Label;
 import Modele.Presentation;
 import Vue.CurrentSlideView;
 import Vue.Resizable;
@@ -31,10 +32,11 @@ public class SelectCurrentPanelListener extends MouseInputAdapter{
                             zr.setBorder(null);                
                             Font font = zr.getTextZone().getFont();
 
-                            JLabel labelOnMiniSlide = new JLabel(zr.getTextZone().getText());
-                            labelOnMiniSlide.setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
+                            Label labelOnMiniSlide = new Label(zr.getTextZone().getText());
+                            labelOnMiniSlide.getMyLabel().setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
+                            labelOnMiniSlide.setSize(zr.getSize().height, zr.getSize().width*10/45);
                             labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
-                            labelOnMiniSlide.setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
+                            labelOnMiniSlide.getMyLabel().setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
                             if(zr.getText() == null) {
                                 currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
                                 zr.setText(labelOnMiniSlide);
