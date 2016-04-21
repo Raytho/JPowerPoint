@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 public class Slide implements Comparable, Serializable{
     private Presentation presentation;
     private int id;
-    private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); //Différents trucs bidules dans le slide
+    private ArrayList<Component> itemsMiniSlide = new ArrayList<Component>(); 
     private ArrayList<Component> itemsCurrentSlide = new ArrayList<Component>();
     private ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
     private boolean isHighlighted = false;
@@ -68,8 +68,7 @@ public class Slide implements Comparable, Serializable{
 
     public Presentation getPresentation() {
         return presentation;
-    }
-    
+    } 
     
     @Override
     public int compareTo(Object t) {

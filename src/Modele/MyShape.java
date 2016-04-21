@@ -2,9 +2,12 @@ package Modele;
 
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 import javax.swing.JPanel;
 
-public class MyShape extends JPanel {    //une shape de notre JPaint (il s'agit d'un JPanel)
+public class MyShape extends JPanel implements Serializable {    //une shape de notre JPaint (il s'agit d'un JPanel)
     private Slide slide;
     private Shape shapeBackground;      //correspond au contour de la shape 
     private Shape shapeForeground;      //l'interieur de la shape
@@ -27,6 +30,26 @@ public class MyShape extends JPanel {    //une shape de notre JPaint (il s'agit 
         this.setBackground(new Color(0,0,0,0));
         this.xOrigin = (int)this.shapeForeground.getBounds2D().getX();  //le JPanel associé à la shape aura la même position
         this.yOrigin = (int)this.shapeForeground.getBounds2D().getY();
+    }
+    
+    public MyShape myShapeCopy() {
+        MyShape newMyShape;
+        Shape shapeBackground = null;
+        Shape shapeForeground = null;
+        if(this.getType().equals("Ellipse")) {
+            Rectangle2D bounds = this.getShapeForeground().getBounds2D();
+            shapeForeground = new Ellipse2D.Float((int)bounds.getX()*10/45,(int)bounds.getY()*10/45,(int)bounds.getWidth()*10/45,(int)bounds.getHeight()*10/45);
+            bounds = this.getShapeBackground().getBounds2D();
+            shapeBackground = new Ellipse2D.Float((int)bounds.getX()*10/45,(int)bounds.getY()*10/45,(int)bounds.getWidth()*10/45,(int)bounds.getHeight()*10/45);
+        }
+        else if(this.getType().equals("Rectangle")) {
+            Rectangle2D bounds = this.getShapeForeground().getBounds2D();
+            shapeForeground = new Rectangle2D.Float((int)bounds.getX()*10/45,(int)bounds.getY()*10/45,(int)bounds.getWidth()*10/45,(int)bounds.getHeight()*10/45);
+            bounds = this.getShapeBackground().getBounds2D();
+            shapeBackground = new Rectangle2D.Float((int)bounds.getX()*10/45,(int)bounds.getY()*10/45,(int)bounds.getWidth()*10/45,(int)bounds.getHeight()*10/45);
+        }
+        newMyShape = new MyShape(this.slide, shapeForeground, shapeBackground, this.getForegroundColor(), this.getBackgroundColor(), this.getType());
+        return newMyShape;
     }
 
     public Color getForegroundColor() {

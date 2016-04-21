@@ -57,7 +57,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
 
     @Override
     public void mousePressed(MouseEvent me) {
-        System.out.println("yay");
         MyShape myShape = (MyShape)me.getSource();
         for(MyShape current : myShape.getSlide().getShapesTab()) {
             current.setSelected(false);
@@ -65,7 +64,7 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
         myShape.setSelected(true);
         myShape.getSlide().getShapesTab().remove(myShape);
         myShape.getSlide().getShapesTab().add(myShape);
-        //myShape.getSlide().getPresentation().notifyObserver();
+        myShape.getSlide().getPresentation().notifyObserver();
         this.xFirstClick = me.getX();
         this.yFirstClick = me.getY();
     }
@@ -89,7 +88,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
 
     @Override
     public void mouseDragged(MouseEvent me) {
-        //System.out.println("yay");
         MyShape myShape = (MyShape)me.getSource();
         int x = myShape.getxOrigin()-this.xFirstClick+me.getX();
         myShape.setxOrigin(x);

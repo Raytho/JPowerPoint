@@ -1,10 +1,13 @@
 package Vue;
+import Modele.MyShape;
 import Modele.Slide;
 import Modele.Presentation;
 import Modele.SlideItem;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -60,4 +63,30 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent me) {}
+    
+    public void paintComponent(Graphics g){ //dessine sur le JPanel principal
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        
+        //ajout de nos shapes
+        for(MyShape current : this.slide.getShapesTab()) { //on ajoute nos shapes au JPanel principal
+            MyShape shape = current.myShapeCopy();
+            if(shape.getShapeBackground() != null) {  //on met la couleur correspondant au contour 
+                g2d.setPaint(shape.getBackgroundColor());
+                g2d.fill(shape.getShapeBackground()); 
+                g2d.draw(shape.getShapeBackground());
+            }
+            
+            if(current.isSelected()) {  //si la shape est sélectionnée, on change sa couleur en dark (l'intérieur)
+                Color selectedColor = shape.getForegroundColor();
+                selectedColor = selectedColor.brighter();
+                g2d.setPaint(shape.getForegroundColor().darker());
+            }
+            else {
+                g2d.setPaint(shape.getForegroundColor());
+            }
+            g2d.fill(shape.getShapeForeground());
+            g2d.draw(shape.getShapeForeground());
+        }
+    }
 }

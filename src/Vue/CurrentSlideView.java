@@ -77,7 +77,7 @@ public class CurrentSlideView extends JPanel implements Observer{
                     current.setBackground(new Color(0,0,0,0));
                 }
                 else {
-                    this.remove(current);   //si elle n'est pas séléctionnée, on la supprime est la recrée
+                    this.remove(current);   //si elle n'est pas séléctionnée, on la supprime et la recrée
                     current.setBounds(current.getxOrigin(), current.getyOrigin(), (int)current.getShapeForeground().getBounds2D().getWidth(), (int)current.getShapeForeground().getBounds2D().getHeight());
                     this.add(current);
                 }
@@ -132,11 +132,31 @@ public class CurrentSlideView extends JPanel implements Observer{
     @Override
     public void update(Presentation presentation) {
         this.slide = this.presentation.getCurrentSlideModel();
-        for(Component current : this.slide.getItemsCurrentSlide()) { 
-            this.remove(current);
-            this.add(current);
+        //this.removeAll();
+        for(int i=0;i<=this.getComponents().length-1;i++) { 
+            if(this.getComponents()[i] instanceof MyShape) {
+                  
+            }
+            else {
+                this.remove(this.getComponents()[i]); 
+            }
         }
-        this.revalidate();
+        for(Component current : this.slide.getItemsCurrentSlide()) { 
+            this.add(current);
+            if(current instanceof Resizable) {
+                Resizable zr = (Resizable)current;
+                this.add(zr.getDragTopLeft());
+                this.add(zr.getDragTopRight());
+                this.add(zr.getDragBotLeft());
+                this.add(zr.getDragBotRight());
+                this.setComponentZOrder(zr, 1);
+                this.setComponentZOrder(zr.getDragTopLeft(), 0);
+                this.setComponentZOrder(zr.getDragTopRight(), 0);
+                this.setComponentZOrder(zr.getDragBotLeft(), 0);
+                this.setComponentZOrder(zr.getDragBotRight(), 0);
+            }
+        }
         this.repaint();
+        this.revalidate();
     }
 }

@@ -17,6 +17,7 @@ import javax.swing.JTextPane;
 public class TextZoneListener implements MouseListener, Serializable{
     Resizable zr;
     Presentation app;
+    
     public TextZoneListener(Resizable zr, Presentation app) {
         this.zr = zr;
         this.app = app;
@@ -64,7 +65,6 @@ public class TextZoneListener implements MouseListener, Serializable{
                 }
             }
         }
-        System.out.println("yo");
     }
 
     @Override

@@ -53,11 +53,11 @@ public class TextToolListener extends MouseInputAdapter {
                                 zr.setText(labelOnMiniSlide);
                                 currentSlide.getSlide().getItemsMiniSlide().add(zr.getText());
                             }
-                            
-                            this.presentation.notifyObserver();
                             zr.setSelected(false);
+                            this.presentation.notifyObserver();
                         }
                         else {
+                            currentSlide.remove(zr);
                             currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
                             currentSlide.getSlide().getItemsCurrentSlide().remove(zr);
                             this.presentation.notifyObserver();
@@ -82,8 +82,7 @@ public class TextToolListener extends MouseInputAdapter {
             currentSlide.setComponentZOrder(zr.getDragTopRight(), 0);
             currentSlide.setComponentZOrder(zr.getDragBotLeft(), 0);
             currentSlide.setComponentZOrder(zr.getDragBotRight(), 0);
-            currentSlide.validate();
-            currentSlide.repaint();
+            this.presentation.notifyObserver();
         }
     }
     
