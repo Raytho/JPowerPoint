@@ -29,7 +29,7 @@ public class MiniaturesView extends JPanel implements Observer{
         this.MiniSlidesInit();
         for(MiniSlidePanel current : this.miniSlides) {
            this.add(Box.createRigidArea(new Dimension(5,5)));
-           current.getSlide().setHighlight(true);
+           //current.getSlide().setHighlight(true);
            current.setBorder(BorderFactory.createLineBorder(Color.red, 2));
            this.add(current);
         }
@@ -38,7 +38,6 @@ public class MiniaturesView extends JPanel implements Observer{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 presentation.addSlide();
-                System.out.println(presentation.getSlideById(0).getItemsMiniSlide().size());
             }
         };
         add.addActionListener(buttonListener);
@@ -70,7 +69,6 @@ public class MiniaturesView extends JPanel implements Observer{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 presentation.addSlide();
-                System.out.println(presentation.getSlideById(0).getItemsMiniSlide().size());
             }
         };
         int nbSlide = this.miniSlides.size();

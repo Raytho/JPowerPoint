@@ -21,6 +21,7 @@ public class Presentation implements Observable, Serializable{
     public void addSlide() {
         this.slideNumber++;
         this.slides.add(new Slide(this.slideNumber-1, this));
+        this.currentSlideModel.setHighlight(true);
         this.notifyObserver();
     }
     

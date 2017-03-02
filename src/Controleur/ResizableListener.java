@@ -1,6 +1,6 @@
 package Controleur;
 
-import Vue.Resizable;
+import Modele.Resizable;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;

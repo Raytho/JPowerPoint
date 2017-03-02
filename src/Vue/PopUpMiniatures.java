@@ -43,8 +43,5 @@ public class PopUpMiniatures extends JPopupMenu{
         };
         deleteItem.addActionListener(deleteListener);
         add(deleteItem);
-        
-        duplicateItem = new JMenuItem("Duplicate");
-        add(duplicateItem);
     }
 }

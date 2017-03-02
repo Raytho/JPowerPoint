@@ -1,7 +1,9 @@
 package Vue;
 
+import Modele.Resizable;
 import Controleur.SelectCurrentPanelListener;
-import Controleur.TextToolListener;
+import Modele.Item;
+import Tools.TextToolListener;
 import Modele.Presentation;
 import Tools.ToolOval;
 import Tools.ToolRectangle;
@@ -9,12 +11,14 @@ import Tools.ToolSelect;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 public class Toolbar extends JToolBar {
@@ -23,24 +27,47 @@ public class Toolbar extends JToolBar {
     private Color mainColor = Color.BLACK;
     private Color borderColor = Color.BLACK;
     
+
     
     public Toolbar(Presentation presentation, MainFrame mainFrame){
         this.setRollover(true);
         this.presentation = presentation;
         this.mainFrame = mainFrame;
-
-        this.add(new ToolSelect(this.mainFrame, this.presentation));
-
-        JButton textZoneButton = new JButton("text");
+        
+        JPanel colorPanel = new JPanel();
+        colorPanel.setLayout(new GridLayout(1,2,4,0));
+        JPanel generalPanel = new JPanel();
+        generalPanel.setLayout(new GridLayout(1,8,4,0));
+        
+        generalPanel.add(new ToolSelect(this.mainFrame, this.presentation));
+        
+        JButton textZoneButton = new JButton("Text");
         ActionListener textZoneButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                mainFrame.getCurrentSlideView().removeListeners();
                mainFrame.getCurrentSlideView().addMouseListener(new TextToolListener(presentation));
+               mainFrame.getStatusPanel().setStatus("Text");
             }        
         };
         textZoneButton.addActionListener(textZoneButtonListener);
-        this.add(textZoneButton);
+        generalPanel.add(textZoneButton);
+        
+        JButton deleteButton = new JButton("Delete");
+        ActionListener DeleteButtonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               for(Item current : presentation.getCurrentSlideModel().getItemsCurrentSlide()) {
+                    if(current.isSelected()) {
+                        presentation.getCurrentSlideModel().getItemsCurrentSlide().remove(current);
+                        presentation.notifyObserver();
+                        break;
+                    }
+                }
+            }        
+        };
+        deleteButton.addActionListener(DeleteButtonListener);
+        generalPanel.add(deleteButton);
 
 
         JButton mainColorButton = new JButton();
@@ -66,7 +93,7 @@ public class Toolbar extends JToolBar {
             }        
         };
         mainColorButton.addActionListener(mainColorButtonListener);
-        this.add(mainColorButton);
+        colorPanel.add(mainColorButton);
         
         JButton borderColorButton = new JButton();
         borderColorButton.setBackground(Color.black);
@@ -81,13 +108,16 @@ public class Toolbar extends JToolBar {
             }        
         };
         borderColorButton.addActionListener(borderColorButtonListener);
-        this.add(borderColorButton);
+        colorPanel.add(borderColorButton);
+        
         
         ToolOval toolOval = new ToolOval(this.mainFrame);
-        this.add(toolOval);
+        generalPanel.add(toolOval);
         
         ToolRectangle toolRectangle = new ToolRectangle(this.mainFrame);
-        this.add(toolRectangle);
+        generalPanel.add(toolRectangle);
+        
+        generalPanel.add(colorPanel);
         
         String[] fonts = { "Arial", "Calibri", "Vladimir Script", "Times New Roman", "Sylfaen"};
         JComboBox fontsList = new JComboBox(fonts);
@@ -112,8 +142,10 @@ public class Toolbar extends JToolBar {
         };
         sizeList.addActionListener(sizeListListener);
         
-        this.add(sizeList);
-        this.add(fontsList);
+        generalPanel.add(sizeList);
+        generalPanel.add(fontsList);
+        
+        this.add(generalPanel);
     } 
 
     public void setPresentation(Presentation presentation) {

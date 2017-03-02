@@ -1,13 +1,13 @@
 package Tools;
 
 import Controleur.SelectCurrentPanelListener;
+import Modele.Item;
 import Modele.MyShape;
 import Modele.Presentation;
 import Modele.Slide;
 import Vue.MainFrame;
 import Vue.MiniSlidePanel;
-import java.awt.Dimension;
-import java.awt.Image;
+import Modele.Resizable;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -30,7 +28,7 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
     static int yFirstClick;
     
     public ToolSelect(MainFrame mainFrame, Presentation presentation) {
-        super("select");
+        super("Select");
         this.mainFrame = mainFrame;
         this.presentation = presentation;
         String toolType = this.getClass().getName();
@@ -62,8 +60,12 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
     @Override
     public void mousePressed(MouseEvent me) {
         MyShape myShape = (MyShape)me.getSource();
-        for(MyShape current : myShape.getSlide().getShapesTab()) {
+        for(Item current : myShape.getSlide().getItemsCurrentSlide()) {
             current.setSelected(false);
+            if(current instanceof Resizable) {
+                current.setBorder(null);
+                current.repaint();
+            }
         }
         myShape.setSelected(true);
         myShape.getSlide().getItemsCurrentSlide().remove(myShape);
@@ -96,8 +98,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
 
     @Override
     public void mouseExited(MouseEvent me) {
-        //this.mainFrame.getPresentation().notifyObserver();
-        //this.mainFrame.getPresentation().notifyObserver();
         this.mainFrame.getCurrentSlideView().repaint();
         this.mainFrame.getCurrentSlideView().revalidate();
         for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
@@ -131,7 +131,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
         myShape.setShapeBackground(shapeBackground);
         myShape.setShapeForeground(shapeForeground);
         myShape.setSelected(false);
-        //myShape.getSlide().getPresentation().notifyObserver();
         this.mainFrame.getCurrentSlideView().repaint();
         this.mainFrame.getCurrentSlideView().revalidate();
         for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {
@@ -139,8 +138,6 @@ public class ToolSelect extends JButton implements ActionListener, MouseListener
             current.revalidate();
         }
         myShape.setSelected(true);
-        //myShape.getSlide().getPresentation().notifyObserver();
-        //myShape.getSlide().getPresentation().notifyObserver();
         this.mainFrame.getCurrentSlideView().repaint();
         this.mainFrame.getCurrentSlideView().revalidate();
         for(MiniSlidePanel current : this.mainFrame.getMiniaturesView().getMiniSlides()) {

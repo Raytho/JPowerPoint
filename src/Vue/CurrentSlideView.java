@@ -1,4 +1,5 @@
 package Vue;
+import Modele.Resizable;
 import Modele.MyShape;
 import Modele.Slide;
 import Modele.Presentation;
@@ -46,7 +47,13 @@ public class CurrentSlideView extends JPanel implements Observer{
         this.getActionMap().put("delete", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent ae) {   //quand on clique sur suppr
-                
+                for(Item current : slide.getItemsCurrentSlide()) {
+                    if(current.isSelected()) {
+                        slide.getItemsCurrentSlide().remove(current);
+                        presentation.notifyObserver();
+                        break;
+                    }
+                }
             }    
         });
     }
@@ -134,19 +141,19 @@ public class CurrentSlideView extends JPanel implements Observer{
     public void update(Presentation presentation) {
         this.slide = this.presentation.getCurrentSlideModel();
         this.removeAll();
-        /*for(int i=0;i<=this.getComponents().length-1;i++) { 
-            if(this.getComponents()[i] instanceof MyShape) {
-                this.remove(this.getComponents()[i]);
-            }
-            else {
-                this.remove(this.getComponents()[i]); 
-            }
-        }*/
         for(Item current : this.slide.getItemsCurrentSlide()) { 
             if(current instanceof MyShape && current.isSelected()) {
                 this.add(current);
             }
             if(current instanceof Resizable) {
+                if(current.isSelected()) {
+                    current.setBorder(BorderFactory.createLineBorder(Color.black));
+                    current.repaint();
+                }
+                else {
+                    current.setBorder(null);
+                    current.repaint();
+                }
                 this.add(current);
                 Resizable zr = (Resizable)current;
                 this.add(zr.getDragTopLeft());

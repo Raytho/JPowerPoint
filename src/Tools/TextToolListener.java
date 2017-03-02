@@ -1,9 +1,10 @@
-package Controleur;
+package Tools;
 
+import Modele.Item;
 import Modele.Label;
 import Modele.Presentation;
 import Vue.CurrentSlideView;
-import Vue.Resizable;
+import Modele.Resizable;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -29,7 +30,6 @@ public class TextToolListener extends MouseInputAdapter {
     public void mousePressed(MouseEvent me) {   
         if(me.getButton() == BUTTON1){
             CurrentSlideView currentSlide = (CurrentSlideView)me.getSource();
-            
             for(int i=0;i<=currentSlide.getSlide().getItemsCurrentSlide().size()-1;i++) {
                 Component current = currentSlide.getSlide().getItemsCurrentSlide().get(i);
                 if(current instanceof Resizable) {
@@ -37,30 +37,12 @@ public class TextToolListener extends MouseInputAdapter {
                     
                     if(zr.isSelected() && zr.getImage() == null){
                         
-                        if(!zr.getTextZone().getText().isEmpty()) {
-                            zr.setBorder(null);                
-                            Font font = zr.getTextZone().getFont();
-
-                            Label labelOnMiniSlide = new Label(zr.getTextZone().getText());
-                            labelOnMiniSlide.getMyLabel().setSize(zr.getSize().height*10/45, zr.getSize().width*10/45);
-                            labelOnMiniSlide.setSize(zr.getSize().height, zr.getSize().width*10/45);
-                            labelOnMiniSlide.setLocation(zr.getX()*10/45, zr.getY()*10/45);
-                            labelOnMiniSlide.getMyLabel().setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
-                            if(zr.getText() == null) {
-                                currentSlide.getSlide().getItemsMiniSlide().add(labelOnMiniSlide);
-                                zr.setText(labelOnMiniSlide);
-                            }
-                            else {
-                                currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
-                                zr.setText(labelOnMiniSlide);
-                                currentSlide.getSlide().getItemsMiniSlide().add(zr.getText());
-                            }
+                        if(!zr.getTextZone().getText().isEmpty()) {            
                             zr.setSelected(false);
                             this.presentation.notifyObserver();
                         }
                         else {
                             currentSlide.remove(zr);
-                            currentSlide.getSlide().getItemsMiniSlide().remove(zr.getText());
                             currentSlide.getSlide().getItemsCurrentSlide().remove(zr);
                             this.presentation.notifyObserver();
                         }

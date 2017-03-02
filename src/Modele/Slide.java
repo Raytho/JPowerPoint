@@ -1,54 +1,26 @@
 package Modele;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 
 public class Slide implements Comparable, Serializable{
     private Presentation presentation;
-    private int id;
-    private ArrayList<Item> itemsMiniSlide = new ArrayList<Item>(); 
+    private int id; 
     private ArrayList<Item> itemsCurrentSlide = new ArrayList<Item>();
-    //private ArrayList<MyShape> shapesTab = new ArrayList<MyShape>();
     private boolean isHighlighted = false;
     
     public Slide(int id, Presentation presentation) {
         this.id = id;
         this.presentation = presentation;
-        //addComponent();
     }
-    
-    /*public void addComponent(){
-        double nb = Math.random();
-        String nbS = String.valueOf(nb);
-        JLabel nComp = new JLabel(nbS); //TODO : class (Cloneable) JLabel 
-        nComp.setSize(new Dimension(33,4));
-        Font newLabelFont=new Font(nComp.getFont().getName(),nComp.getFont().getStyle(),5);
-        nComp.setFont(newLabelFont);
-        JLabel nCompCopy = new JLabel(nbS);
-        nCompCopy.setSize(new Dimension(150,20));
-        this.itemsMiniSlide.add(nComp);
-        this.itemsCurrentSlide.add(nCompCopy);
-    }*/
     
     public void addCurrentSlideComponent (Item item) {
         this.itemsCurrentSlide.add(item);
     }
 
-    public ArrayList<Item> getItemsMiniSlide() {
-        return itemsMiniSlide;
-    }
-    
     public ArrayList<Item> getItemsCurrentSlide() {
         return itemsCurrentSlide;
     }
-
-    /*public ArrayList<MyShape> getShapesTab() {
-        return shapesTab;
-    }*/
 
     public int getId() {
         return id;

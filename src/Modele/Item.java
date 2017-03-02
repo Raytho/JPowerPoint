@@ -19,4 +19,6 @@ public abstract class Item extends JPanel{
     public boolean isSelected() {
         return selected;
     }
+    
+    public abstract Item itemCopy();
 }

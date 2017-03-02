@@ -21,4 +21,9 @@ public class Label extends Item{
     public JLabel getMyLabel() {
         return myLabel;
     }
+
+    @Override
+    public Item itemCopy() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

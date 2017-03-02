@@ -1,35 +1,26 @@
-
-
 package Vue;
 
 import Controleur.BinaryFileTools;
 import Modele.Presentation;
 import Observe.Observer;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class Menu extends JMenuBar{
     private JMenu fileMenu = new JMenu("File");
-    private JMenu editMenu = new JMenu("Insertion");
     private MainFrame mainFrame;
     
     
     public Menu(MainFrame mainFrame){  
         this.mainFrame = mainFrame;
         fileMenu.setMnemonic(KeyEvent.VK_F);
-        JMenuItem newF = new JMenuItem("New", KeyEvent.VK_N);
-        fileMenu.add(newF);
         
         JMenuItem openF = new JMenuItem("Open", KeyEvent.VK_O);
         ActionListener OpenListener = new ActionListener() {
@@ -72,17 +63,6 @@ public class Menu extends JMenuBar{
         fileMenu.add(saveF);
         
         this.add(fileMenu);
-        
-        
-        editMenu.setMnemonic(KeyEvent.VK_I);
-        JMenu rectI = new JMenu("Rectangle");
-        
-        editMenu.add(rectI);
-        JMenu ellipseI = new JMenu("Ellipse");
-        
-        editMenu.add(ellipseI);
-        
-        this.add(editMenu);
-    
+
 }
 }

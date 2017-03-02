@@ -32,7 +32,7 @@ public class MyShape extends Item implements Serializable {    //une shape de no
         this.yOrigin = (int)this.shapeForeground.getBounds2D().getY();
     }
     
-    public MyShape myShapeCopy() {
+    public Item itemCopy() {
         MyShape newMyShape;
         Shape shapeBackground = null;
         Shape shapeForeground = null;

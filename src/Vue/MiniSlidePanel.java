@@ -21,8 +21,13 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
         this.slide = slide;
         this.setLayout(null);
         this.presentation = presentation;
-        for(Component current : this.slide.getItemsMiniSlide()) {
+        /*for(Component current : this.slide.getItemsMiniSlide()) {
             this.add(current);
+        }*/
+        for(Item current : this.slide.getItemsCurrentSlide()) {
+            if(!(current instanceof MyShape)) {
+                this.add(current.itemCopy());
+            }
         }
         this.setPreferredSize(new Dimension(950*10/45,600*10/45)); //   /4.5 ratio
         this.setMinimumSize(this.getPreferredSize());
@@ -70,7 +75,8 @@ public class MiniSlidePanel extends JPanel implements MouseListener{
         
         //ajout de nos shapes
         for(MyShape current : this.slide.getShapesTab()) { //on ajoute nos shapes au JPanel principal
-            MyShape shape = current.myShapeCopy();
+            Item item = current.itemCopy();
+            MyShape shape = (MyShape)item;
             if(shape.getShapeBackground() != null) {  //on met la couleur correspondant au contour 
                 g2d.setPaint(shape.getBackgroundColor());
                 g2d.fill(shape.getShapeBackground()); 

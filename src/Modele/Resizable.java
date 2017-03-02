@@ -1,14 +1,16 @@
-package Vue;
+package Modele;
 
-import Controleur.TextZoneListener;
+import Controleur.ClickOnTextListener;
 import Controleur.ResizableListener;
 import Controleur.DragListener;
 import Modele.Presentation;
 import Modele.Item;
 import Modele.Label;
+import Vue.CurrentSlideView;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.Serializable;
 import javax.swing.BorderFactory;
@@ -45,7 +47,7 @@ public class Resizable extends Item implements Serializable{
             textZone.setOpaque(false);
             this.add(textZone);
             this.image = null;
-            TextZoneListener tzl = new TextZoneListener(this, currentSlideView.getPresentation());
+            ClickOnTextListener tzl = new ClickOnTextListener(this, currentSlideView.getPresentation());
             this.textZone.addMouseListener(tzl);
         }else{
             this.textZone = null;
@@ -126,5 +128,15 @@ public class Resizable extends Item implements Serializable{
 
     public void setText(Label text) {
         this.text = text;
+    }
+    
+    public Item itemCopy() {
+        Label labelOnMiniSlide = new Label(this.getTextZone().getText());
+        labelOnMiniSlide.getMyLabel().setSize(this.getSize().height*10/45, this.getSize().width*10/45);
+        labelOnMiniSlide.setSize(this.getSize().height, this.getSize().width*10/45);
+        labelOnMiniSlide.setLocation(this.getX()*10/45-50, this.getY()*10/45);
+        Font font = this.getTextZone().getFont();
+        labelOnMiniSlide.getMyLabel().setFont(new Font("Serif", font.getStyle(), font.getSize()*20/45));
+        return labelOnMiniSlide;
     }
 }
